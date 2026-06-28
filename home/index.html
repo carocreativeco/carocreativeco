@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caro Creative Co. | Operations & Brand Engineering</title>
     
-    <!-- Google Fonts for Editorial Serif and Utility Sans -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* GLOBAL DESIGN TOKENS */
         :root {
             --bg-cream: #FDFBF7;
             --bg-matcha: #F0F5E6;
@@ -50,7 +48,6 @@
             padding: 0 40px;
         }
 
-        /* BUTTONS */
         .btn {
             display: inline-block;
             padding: 14px 32px;
@@ -83,7 +80,6 @@
             color: var(--text-charcoal);
         }
 
-        /* BLOCK 1: HEADER */
         header {
             padding: 30px 0;
             display: flex;
@@ -115,7 +111,6 @@
             color: var(--text-slate);
         }
 
-        /* BLOCK 2: HERO ZONE */
         .hero {
             padding: 100px 0;
             display: grid;
@@ -172,31 +167,6 @@
             filter: blur(50px);
         }
 
-        /* BLOCK 3: TRANSFORMATION NARRATIVE */
-        .narrative {
-            padding: 100px 0;
-        }
-
-        .narrative-box {
-            background-color: var(--bg-matcha);
-            border-radius: 40px;
-            padding: 80px;
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .narrative h2 {
-            font-size: 3rem;
-            margin-bottom: 30px;
-        }
-
-        .narrative p {
-            font-size: 1.15rem;
-            color: var(--text-slate);
-        }
-
-        /* BLOCK 4: SERVICES */
         .services {
             padding: 100px 0;
             display: grid;
@@ -221,7 +191,6 @@
             color: var(--text-slate);
         }
 
-        /* BLOCK 5: PORTFOLIO */
         .portfolio {
             padding: 100px 0;
         }
@@ -253,7 +222,6 @@
             color: var(--text-slate);
         }
 
-        /* BLOCK 6: FAQ */
         .faq {
             padding: 100px 0;
             max-width: 800px;
@@ -305,7 +273,6 @@
             font-size: 1rem;
         }
 
-        /* FOOTER */
         footer {
             padding: 40px 0;
             border-top: 1px solid rgba(15, 17, 21, 0.1);
@@ -315,7 +282,6 @@
             color: var(--text-slate);
         }
 
-        /* RESPONSIVE */
         @media (max-width: 968px) {
             .hero, .portfolio-grid {
                 grid-template-columns: 1fr;
@@ -328,10 +294,7 @@
                 font-size: 3.5rem;
             }
             nav ul {
-                display: none; /* Mobile menu would go here */
-            }
-            .narrative-box {
-                padding: 40px 20px;
+                display: none; 
             }
         }
     </style>
@@ -339,7 +302,6 @@
 <body>
 
     <div class="container">
-        <!-- HEADER -->
         <header>
             <a href="#" class="brand-logo">Caro Creative Co.</a>
             <nav>
@@ -352,7 +314,6 @@
             <a href="#" class="btn btn-lime">Request System Audit</a>
         </header>
 
-        <!-- HERO ZONE -->
         <section class="hero">
             <div class="hero-content">
                 <span class="eyebrow">Caro Creative Co. — System Architecture & Brand Engineering</span>
@@ -361,22 +322,12 @@
                 <a href="#" class="btn btn-dark">Optimize Your Infrastructure →</a>
             </div>
             <div class="hero-visual">
-                <!-- Abstract visual representation for soft kinetic editorial feel -->
                 <div style="width: 60%; height: 60%; border-radius: 40px; background: rgba(253, 251, 247, 0.5); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.8); box-shadow: 0 20px 40px rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; padding: 30px; text-align: center;">
                     <span style="font-family: var(--font-serif); font-size: 1.5rem; color: var(--text-slate);">Fluid.<br>Systematic.<br>Graceful.</span>
                 </div>
             </div>
         </section>
 
-        <!-- TRANSFORMATION NARRATIVE -->
-        <section class="narrative">
-            <div class="narrative-box">
-                <h2>Calm Behind The Momentum.</h2>
-                <p>Rapid scale shouldn't feel chaotic. Every hour spent manually stitching content, managing launch deadlines, or re-building assets from scratch stalls your executive authority. We engineer the elegant, permanent infrastructure your business needs to expand. By pairing fractional marketing leadership with custom brand systems, we protect your creative space so you can scale with absolute clarity.</p>
-            </div>
-        </section>
-
-        <!-- RE-ENGINEERED SERVICE CORE -->
         <section class="services">
             <div class="service-card">
                 <h3>01 / Launch Operations</h3>
@@ -392,7 +343,6 @@
             </div>
         </section>
 
-        <!-- EVIDENCE PORTFOLIO GRID -->
         <section class="portfolio">
             <div class="portfolio-grid">
                 <div class="portfolio-item">
@@ -408,7 +358,6 @@
             </div>
         </section>
 
-        <!-- AI-OPTIMIZED ACCORDION FAQ -->
         <section class="faq">
             <h2>Frequently Asked Questions</h2>
             
@@ -433,7 +382,6 @@
             </details>
         </section>
 
-        <!-- FOOTER -->
         <footer>
             <div>© 2026 Caro Creative Co. All Rights Reserved.</div>
             <div>System Architecture • Brand Operations</div>
