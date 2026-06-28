@@ -1,1 +1,318 @@
-///
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>by DOSSIER | Bespoke Electronic Press Kit Design</title>
+    <meta name="description" content="by DOSSIER is a bespoke design studio for high-end electronic press kits and pitch decks for elite talent, founders, creators, and public figures.">
+    <meta name="keywords" content="electronic press kit, electronic press kit design, bespoke EPK design, EPK designer, pitch deck design, brand partnership pitch deck, press kit for models, press kit for actors, EPK for influencers">
+    <style>
+  :root{--white:#fff;--cream:#fdfbf7;--charcoal:#121212;--black:#000;--slate:#1f2937;--taupe:#7a7167;--line:#e5e7eb;--max:1240px}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--white);color:var(--black);font-family:Inter,"DM Sans",Roboto,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-weight:300;line-height:1.6;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  p,h1,h2,h3{margin:0}
+  h1,h2,h3,.brand{font-family:"Playfair Display","Bodoni 72","Bodoni Moda",Prata,"Times New Roman",serif;font-weight:400;letter-spacing:-.02em;line-height:.95}
+  .site-nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+  .nav-inner{width:min(var(--max),calc(100% - 40px));min-height:76px;margin:0 auto;display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:30px}
+  .brand{font-size:1.05rem;letter-spacing:.1em;text-transform:uppercase}
+  .nav-links{display:flex;gap:30px;color:var(--slate);font-size:.86rem;font-weight:400}
+  .nav-cta{border-bottom:1px solid var(--black);font-size:.86rem;font-weight:400;padding-bottom:3px}
+  .section{padding:96px 0}
+  .wrap{width:min(var(--max),calc(100% - 40px));margin:0 auto}
+  .eyebrow{color:var(--taupe);font-size:.72rem;font-weight:400;letter-spacing:.16em;text-transform:uppercase;margin-bottom:22px}
+  .hero{min-height:calc(100vh - 76px);display:grid;align-items:center;background:linear-gradient(90deg,var(--white) 0 56%,var(--cream) 56% 100%)}
+  .hero-grid{display:grid;grid-template-columns:1.08fr .72fr;gap:72px;align-items:center}
+  .hero h1{font-size:clamp(4.1rem,8vw,8.6rem);max-width:920px}
+  .hero-summary{margin-top:30px;max-width:760px;color:var(--slate);font-size:clamp(1rem,1.35vw,1.16rem);line-height:1.72}
+  .hero-actions{margin-top:38px;display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--black);border-radius:999px;background:var(--black);color:var(--white);min-height:54px;padding:0 26px;font-size:.92rem;font-weight:400;transition:opacity .2s ease,transform .2s ease}
+  .btn:hover{opacity:.82;transform:translateY(-1px)}
+  .micro{margin-top:14px;color:var(--taupe);font-size:.82rem}
+  .image-frame{margin:0;overflow:hidden;background:var(--cream)}
+  .image-frame img{display:block;width:100%;height:100%;object-fit:cover}
+  .editorial-image{height:610px}
+  .dilemma{border-top:1px solid var(--line)}
+  .dilemma-grid{display:grid;grid-template-columns:.42fr 1fr;gap:90px}
+  .studio-grid{display:grid;grid-template-columns:1fr .62fr;gap:76px;align-items:center}
+  .studio-image{height:620px}
+  .dilemma h2,.proof h2,.matrix h2,.widget h2,.faq h2{font-size:clamp(3.4rem,6vw,6.6rem)}
+  .copy-stack{display:grid;gap:26px;color:var(--slate);font-size:1.12rem;line-height:1.75;max-width:800px}
+  .capabilities{background:var(--cream)}
+  .cap-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .cap-card{padding:46px 48px 54px}
+  .cap-card+ .cap-card{border-left:1px solid var(--line)}
+  .cap-card h3{font-size:clamp(2.1rem,3.5vw,3.7rem);margin-bottom:22px}
+  .cap-card p{color:var(--slate);font-size:1.05rem;line-height:1.75}
+  .feature-list{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border-block:1px solid var(--line)}
+  .feature{padding:26px 28px;color:var(--slate);font-size:1rem}
+  .feature+.feature{border-left:1px solid var(--line)}
+  .feature strong{display:block;color:var(--black);font-weight:400;margin-bottom:7px}
+  .proof{text-align:center}
+  .proof p{width:min(920px,100%);margin:28px auto 0;color:var(--slate);font-size:1.16rem;line-height:1.8}
+  .proof-strip{margin-top:54px;display:grid;gap:18px}
+  .proof-image{height:360px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .matrix{background:var(--white);border-top:1px solid var(--line)}
+  table{width:100%;border-collapse:collapse;margin-top:38px}
+  th,td{text-align:left;vertical-align:top;border-bottom:1px solid var(--line);padding:22px 14px;color:var(--slate);font-size:1rem;line-height:1.55}
+  th{color:var(--black);font-weight:400;font-size:.78rem;letter-spacing:.13em;text-transform:uppercase}
+  td strong{color:var(--black);font-weight:400}
+  .widget{background:var(--cream)}
+  .widget-card{display:grid;grid-template-columns:.72fr 1fr;gap:54px;background:var(--white);border:1px solid var(--line);padding:48px}
+  .widget p{color:var(--slate)}
+  .controls{display:grid;gap:24px}
+  .control{border-bottom:1px solid var(--line);padding-bottom:24px}
+  label{display:block;color:var(--slate);font-size:.95rem;margin-bottom:12px}
+  input[type=range]{width:100%;accent-color:var(--black)}
+  .range-meta{display:flex;justify-content:space-between;color:var(--taupe);font-size:.82rem;margin-top:8px}
+  .check{display:flex;align-items:center;gap:12px;color:var(--slate);font-size:.95rem}
+  .check input{width:18px;height:18px;accent-color:var(--black)}
+  .dynamic{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .stat{background:var(--cream);padding:22px;border:1px solid var(--line)}
+  .stat span{display:block;color:var(--taupe);font-size:.72rem;letter-spacing:.13em;text-transform:uppercase}
+  .stat strong{display:block;margin-top:8px;font-size:1.08rem;font-weight:400}
+  .block-btn{width:100%;min-height:58px;border:0;background:var(--charcoal);color:var(--white);font-size:.94rem;cursor:pointer;transition:opacity .2s ease}
+  .block-btn:hover{opacity:.86}
+  .fine{font-size:.82rem;color:var(--taupe);line-height:1.6}
+  .faq{border-top:1px solid var(--line)}
+  .faq-grid{display:grid;grid-template-columns:.42fr 1fr;gap:80px}
+  details{border-bottom:1px solid var(--line);padding:24px 0}
+  summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:20px;font-size:1.1rem;color:var(--black)}
+  summary::-webkit-details-marker{display:none}
+  summary:after{content:"+";color:var(--taupe)}
+  details[open] summary:after{content:"-"}
+  details p{margin-top:14px;color:var(--slate);font-size:.98rem;line-height:1.7}
+  .footer{border-top:1px solid var(--line);padding:28px 0;color:var(--slate);font-size:.82rem}
+  .footer-row{width:min(var(--max),calc(100% - 40px));margin:0 auto;display:flex;justify-content:space-between;gap:20px}
+  .fade{opacity:0;transform:translateY(18px);animation:rise .7s ease forwards}
+  .fade:nth-child(2){animation-delay:.08s}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(max-width:920px){.nav-inner{grid-template-columns:1fr auto}.nav-links{display:none}.hero{background:var(--white)}.hero-grid,.dilemma-grid,.studio-grid,.widget-card,.faq-grid{grid-template-columns:1fr;gap:36px}.editorial-image{height:420px}.studio-image{height:480px}.proof-image{height:280px}.cap-grid,.feature-list,.dynamic{grid-template-columns:1fr}.cap-card+.cap-card,.feature+.feature{border-left:0;border-top:1px solid var(--line)}.widget-card{padding:30px}.footer-row{flex-direction:column}.section{padding:76px 0}}
+  @media(max-width:640px){.hero h1{font-size:3.5rem}.dilemma h2,.proof h2,.matrix h2,.widget h2,.faq h2{font-size:3rem}.cap-card{padding:34px 0}.cap-grid{border-inline:0}.widget-card{border-inline:0}.wrap{width:min(100% - 28px,var(--max))}th,td{display:block;padding:16px 0}tr{display:block;border-bottom:1px solid var(--line)}td{border-bottom:0}}
+</style>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Bespoke Electronic Press Kit Design",
+        "provider": {
+          "@type": "Organization",
+          "name": "by DOSSIER"
+        },
+        "description": "by DOSSIER designs bespoke, done-for-you electronic press kits and pitch decks for elite talent, founders, creatives, and public figures.",
+        "serviceType": "Electronic press kit design",
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Actors, models, influencers, founders, speakers, creatives, and personal brands"
+        },
+        "areaServed": "United States",
+        "keywords": ["electronic press kit", "electronic press kit design", "EPK design", "EPK designer", "pitch deck design", "media kit for talent"]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What is Dossier and who is it built for?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dossier is a professional design studio that builds premium, custom Electronic Press Kits (EPKs) and pitch decks for talent, models, actors, influencers, and business founders who have existing credentials but need them presented at an elite level."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why shouldn't I just use a free online template?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "While templates are a fine option for self-design, Dossier is a comprehensive service that delivers bespoke design, original narrative structuring, and complete copy polishing that templates cannot provide."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does the custom design process take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The entire creation process takes between 5 to 10 business days, depending on how quickly you submit your raw materials, complete the intake questionnaire, and provide project feedback."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I get editable files of my EPK or Pitch Deck?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Standard delivery includes two optimized, presentation-ready PDF files: one for digital screens and one for high-quality printing. Fully editable source files can be selected as a project add-on."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Why does Dossier charge a fee for the initial discovery call?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "The discovery call functions as a paid, working strategic session to map out your deliverables, establish goals, and map your information hierarchy, which acts as an efficient filter for serious inquiries."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <header class="site-nav">
+      <div class="nav-inner">
+        <a class="brand" href="#">by DOSSIER</a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="#services">Services</a>
+          <a href="#studio">Studio Profile</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <a class="nav-cta" href="#apply">Apply For Entry</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="wrap hero-grid">
+          <div class="fade">
+            <p class="eyebrow">BY DOSSIER - STUDIO PRODUCTION</p>
+            <h1>Your Legacy, Structured. Bespoke EPKs and Pitch Decks for Creative Elites.</h1>
+            <p class="hero-summary"><strong>by DOSSIER</strong> is a premier, bespoke design studio constructing high-end, done-for-you Electronic Press Kits (EPKs) and pitch decks for elite talent and founders. We reject mass-market templates, manually engineering your narrative and visual layouts from scratch to secure premium partnerships and investor backing. Every project undergoes a rigorous asset audit to elevate exactly how you are perceived by industry gatekeepers.</p>
+            <div class="hero-actions">
+              <a class="btn" href="#apply">Book Strategic Discovery Session &rarr;</a>
+            </div>
+            <p class="micro">Custom production is strictly capped at 3 projects per month. Currently booking for next month.</p>
+          </div>
+          <figure class="image-frame editorial-image fade">
+            <img src="dossier-assets/dossier-hero-editorial.png" width="1400" height="1800" alt="Editorial portrait placeholder for by DOSSIER hero imagery">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section dilemma" id="studio">
+        <div class="wrap studio-grid">
+          <div class="dilemma-grid">
+            <div><h2>The 30-Second Rule.</h2></div>
+            <div class="copy-stack">
+              <p>Industry audits show that talent portfolios and investment pitch decks have <strong>less than 30 seconds</strong> to capture the attention of a brand manager or venture capitalist. When you rely on generic, cookie-cutter internet templates, your achievements are buried inside decorative clutter. True luxury is not about decoration; it is about absolute information clarity.</p>
+              <p>At by DOSSIER, we eliminate visual noise. Through our signature <strong>Bespoke Narrative Structuring</strong>, we take your fragmented press clips, raw media credits, and scattered accolades and refine them into a high-impact, persuasive page-flow. We do not just move text around a page. We strategically engineer an evidence block that demands immediate industry respect.</p>
+            </div>
+          </div>
+          <figure class="image-frame studio-image">
+            <img src="dossier-assets/dossier-studio-profile.png" width="1200" height="1500" alt="Studio profile image placeholder for by DOSSIER editorial detail">
+          </figure>
+        </div>
+      </section>
+
+      <section class="section capabilities" id="services">
+        <div class="wrap">
+          <div class="cap-grid">
+            <article class="cap-card">
+              <h3>01 / Electronic Press Kits (EPKs)</h3>
+              <p>Premium, comprehensive digital portfolios engineered specifically for models, actors, creators, and public figures. We systemize your booking history, brand partnerships, and media features into an editorial layout designed to secure elite agency representation and premium brand contracts.</p>
+            </article>
+            <article class="cap-card">
+              <h3>02 / Strategic Pitch Decks</h3>
+              <p>Highly targeted, investor-ready presentations built for business founders and innovators. We strip away the text bulk, execute a rigorous <strong>Copy Polish Phase</strong>, and highlight your primary audience metrics, proof of concept, and commercial value proposition to command capital.</p>
+            </article>
+          </div>
+          <div class="feature-list">
+            <div class="feature"><strong>Zero-Template Architecture:</strong>Every layout grid is built entirely from scratch around your personal assets.</div>
+            <div class="feature"><strong>Screen &amp; Print Optimization:</strong>Final deliverables include a lightweight digital PDF for mobile viewing and a high-resolution export for physical media.</div>
+            <div class="feature"><strong>Rapid Production Window:</strong>Standard delivery cycles range strictly between <strong>5 to 10 business days</strong> from asset ingestion.</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section proof">
+        <div class="wrap">
+          <h2>Validated Execution.</h2>
+          <p>A design is only as good as the doors it opens. Our high-touch framework ensures that complex career milestones are instantly scannable and effortlessly parsed. The efficacy of our narrative architecture is proven by leading industry figures, with our custom design layouts trusted by prominent Hollywood talent, global creators, and executives, including notable portfolio placements for public figures like <strong>Nazanin Mandi</strong> and actress <strong>Gwendolyn Osborne</strong>.</p>
+          <div class="proof-strip">
+            <figure class="image-frame proof-image">
+              <img src="dossier-assets/dossier-proof-gwendolyn.png" width="2400" height="900" alt="Gwendolyn Osborne proof and credibility image placeholder">
+            </figure>
+            <figure class="image-frame proof-image">
+              <img src="dossier-assets/dossier-proof-nazanin.png" width="2400" height="900" alt="Nazanin Mandi proof and credibility image placeholder">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section matrix">
+        <div class="wrap">
+          <h2>Performance Matrix.</h2>
+          <table>
+            <thead><tr><th>Performance Metric</th><th>by DOSSIER Studio</th><th>Standard DIY Templates</th></tr></thead>
+            <tbody>
+              <tr><td>Design Origin</td><td><strong>100% Bespoke</strong>, engineered from absolute scratch.</td><td>Replicated, mass-market template grids.</td></tr>
+              <tr><td>Storytelling Support</td><td>Complete narrative architecture &amp; slide ordering.</td><td>None. User must determine their own page flow.</td></tr>
+              <tr><td>Copywriting Support</td><td>Included <strong>Copy Polish Phase</strong> &amp; headline framing.</td><td>None. Text must be completely self-written.</td></tr>
+              <tr><td>Production Speed</td><td>Guaranteed delivery in <strong>5 to 10 business days</strong>.</td><td>Highly variable; dependent on user's free time.</td></tr>
+              <tr><td>Exclusivity</td><td>Strictly capped at <strong>3 projects per month</strong>.</td><td>Shared by millions of active online users.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section widget" id="apply">
+        <div class="wrap widget-card">
+          <div>
+            <p class="eyebrow">APPLICATION INTERFACE</p>
+            <h2>Secure Your Production Slot</h2>
+            <p style="margin-top:22px">Select your structural parameters below to view real-time studio investment estimates and current monthly availability.</p>
+          </div>
+          <div class="controls">
+            <div class="control">
+              <label for="pages">Project Length: <strong id="pageLabel">10 Pages</strong></label>
+              <input id="pages" type="range" min="0" max="3" step="1" value="1">
+              <div class="range-meta"><span>5 Pages</span><span>10 Pages</span><span>15 Pages</span><span>20+ Pages</span></div>
+            </div>
+            <label class="check"><input id="copySupport" type="checkbox" checked> Include Copywriting Support &amp; Headline Polishing</label>
+            <label class="check"><input id="sourceFiles" type="checkbox"> Include Master Vector Source File Delivery</label>
+            <div class="dynamic">
+              <div class="stat"><span>Estimated Production Time</span><strong id="timeEstimate">5-10 Business Days</strong></div>
+              <div class="stat"><span>Studio Capacity</span><strong>2 / 3 Slots Booked This Month</strong></div>
+            </div>
+            <button class="block-btn" type="button">Apply for Available Production Slot &rarr;</button>
+            <p class="fine">The initial discovery session functions as a paid, working strategic strategy call to map your information hierarchy.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <div class="wrap faq-grid">
+          <div><h2>FAQ</h2></div>
+          <div>
+            <details open><summary>What is Dossier and who is it built for?</summary><p>Dossier is a professional design studio that builds premium, custom Electronic Press Kits (EPKs) and pitch decks for talent, models, actors, influencers, and business founders who have existing credentials but need them presented at an elite level.</p></details>
+            <details><summary>Why shouldn't I just use a free online template?</summary><p>While templates are a fine option for self-design, Dossier is a comprehensive service that delivers bespoke design, original narrative structuring, and complete copy polishing that templates cannot provide.</p></details>
+            <details><summary>How long does the custom design process take?</summary><p>The entire creation process takes between 5 to 10 business days, depending on how quickly you submit your raw materials, complete the intake questionnaire, and provide project feedback.</p></details>
+            <details><summary>Can I get editable files of my EPK or Pitch Deck?</summary><p>Standard delivery includes two optimized, presentation-ready PDF files: one for digital screens and one for high-quality printing. Fully editable source files can be selected as a project add-on.</p></details>
+            <details><summary>Why does Dossier charge a fee for the initial discovery call?</summary><p>The discovery call functions as a paid, working strategic session to map out your deliverables, establish goals, and map your information hierarchy, which acts as an efficient filter for serious inquiries.</p></details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-row">
+        <span>&copy; 2026 by DOSSIER. All Rights Reserved.</span>
+        <span>Bespoke Narrative Architecture &bull; Capped at 3 Projects Monthly.</span>
+      </div>
+    </footer>
+    <script>
+      const pageValues = ["5 Pages", "10 Pages", "15 Pages", "20+ Pages"];
+      const pages = document.querySelector("#pages");
+      const pageLabel = document.querySelector("#pageLabel");
+      const timeEstimate = document.querySelector("#timeEstimate");
+      const updateWidget = () => {
+        const index = Number(pages.value);
+        pageLabel.textContent = pageValues[index];
+        timeEstimate.textContent = index >= 2 ? "7-10 Business Days" : "5-10 Business Days";
+      };
+      pages.addEventListener("input", updateWidget);
+      updateWidget();
+    </script>
+  </body>
+</html>
