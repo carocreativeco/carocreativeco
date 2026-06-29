@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caro Creative Co. | Operations & Brand Engineering</title>
+    <title>Caro Creative | Operations & Brand Engineering</title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,7 +45,7 @@
         .container {
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 28px;
         }
 
         .btn {
@@ -81,16 +81,23 @@
         }
 
         header {
-            padding: 30px 0;
+            padding: 22px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .brand-logo {
-            font-size: 1.75rem;
+            display: inline-flex;
+            align-items: center;
             text-decoration: none;
             color: var(--text-charcoal);
+        }
+
+        .brand-logo img {
+            display: block;
+            width: clamp(150px, 15vw, 210px);
+            height: auto;
         }
 
         nav ul {
@@ -112,10 +119,10 @@
         }
 
         .hero {
-            padding: 100px 0;
+            padding: 70px 0;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 80px;
+            gap: 60px;
             align-items: center;
         }
 
@@ -145,7 +152,7 @@
 
         .hero-visual {
             position: relative;
-            height: 600px;
+            height: 540px;
             background: var(--bg-matcha);
             border-radius: 40px 150px 40px 40px;
             overflow: hidden;
@@ -168,7 +175,7 @@
         }
 
         .services {
-            padding: 100px 0;
+            padding: 70px 0;
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 40px;
@@ -191,16 +198,115 @@
             color: var(--text-slate);
         }
 
+
+
+        .logo-marquee-section {
+            padding: 16px 0 56px;
+        }
+
+        .logo-marquee-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 48px;
+            background: rgba(240, 245, 230, 0.72);
+            border: 1px solid rgba(15, 17, 21, 0.06);
+            padding: 28px 0;
+            backdrop-filter: blur(14px);
+        }
+
+        .logo-marquee-card::before,
+        .logo-marquee-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            width: 120px;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .logo-marquee-card::before {
+            left: 0;
+            background: linear-gradient(90deg, var(--bg-matcha), rgba(240, 245, 230, 0));
+        }
+
+        .logo-marquee-card::after {
+            right: 0;
+            background: linear-gradient(270deg, var(--bg-matcha), rgba(240, 245, 230, 0));
+        }
+
+        .logo-marquee-label {
+            display: block;
+            margin: 0 32px 18px;
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-slate);
+        }
+
+        .logo-marquee {
+            display: flex;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .logo-track {
+            display: flex;
+            align-items: center;
+            gap: 96px;
+            min-width: max-content;
+            padding-right: 96px;
+            animation: logo-scroll 72s linear infinite;
+        }
+
+        .logo-marquee:hover .logo-track {
+            animation-play-state: paused;
+        }
+
+        .logo-item {
+            flex: 0 0 auto;
+            width: 150px;
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 32px;
+            background: rgba(253, 251, 247, 0.64);
+            border: 1px solid rgba(255, 255, 255, 0.78);
+            box-shadow: 0 16px 34px rgba(15, 17, 21, 0.04);
+        }
+
+        .logo-item img {
+            display: block;
+            max-width: 108px;
+            max-height: 36px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            filter: grayscale(1);
+            opacity: 0.74;
+        }
+
+        @keyframes logo-scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
         .portfolio {
-            padding: 100px 0;
+            padding: 70px 0;
         }
 
         .portfolio-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 48px;
             border-top: 1px solid rgba(15, 17, 21, 0.1);
-            padding-top: 60px;
+            padding-top: 44px;
         }
 
         .portfolio-item h3 {
@@ -223,14 +329,14 @@
         }
 
         .faq {
-            padding: 100px 0;
+            padding: 70px 0;
             max-width: 800px;
             margin: 0 auto;
         }
 
         .faq h2 {
             font-size: 3rem;
-            margin-bottom: 50px;
+            margin-bottom: 36px;
             text-align: center;
         }
 
@@ -274,7 +380,7 @@
         }
 
         footer {
-            padding: 40px 0;
+            padding: 32px 0;
             border-top: 1px solid rgba(15, 17, 21, 0.1);
             display: flex;
             justify-content: space-between;
@@ -288,7 +394,23 @@
             }
             .services {
                 grid-template-columns: 1fr;
-                gap: 60px;
+                gap: 42px;
+            }
+            .logo-marquee-section {
+                padding: 0 0 44px;
+            }
+            .logo-marquee-card {
+                border-radius: 40px;
+                padding: 24px 0;
+            }
+            .logo-track {
+                gap: 56px;
+                padding-right: 56px;
+                animation-duration: 56s;
+            }
+            .logo-item {
+                width: 128px;
+                height: 58px;
             }
             .hero-content h1 {
                 font-size: 3.5rem;
@@ -303,7 +425,7 @@
 
     <div class="container">
         <header>
-            <a href="#" class="brand-logo">Caro Creative Co.</a>
+            <a href="#" class="brand-logo" aria-label="Caro Creative home"><img src="caro-logo.png" alt="Caro Creative"></a>
             <nav>
                 <ul>
                     <li><a href="#">System Architecture</a></li>
@@ -316,9 +438,9 @@
 
         <section class="hero">
             <div class="hero-content">
-                <span class="eyebrow">Caro Creative Co. — System Architecture & Brand Engineering</span>
+                <span class="eyebrow">Caro Creative — System Architecture & Brand Engineering</span>
                 <h1>Scale Your Impact. <br>Systemize Your Brand.</h1>
-                <p><strong>Caro Creative Co.</strong> is an elite operational strategy and brand engineering studio that specializes in business operations optimization for high-growth founders, non-profits, and scaling entrepreneurs. By merging high-level leadership roles—such as Fractional CMO, Product Launch Specialist, and Communications Director—with premium graphic and web design, the studio replaces chaotic internal workflows with standardized digital architecture. Caro Creative Co. builds the content supply chains, launch funnels, and brand infrastructure required to eliminate operational drag and drive efficient business scaling.</p>
+                <p><strong>Caro Creative</strong> is an elite operational strategy and brand engineering studio that specializes in business operations optimization for high-growth founders, non-profits, and scaling entrepreneurs. By merging high-level leadership roles—such as Fractional CMO, Product Launch Specialist, and Communications Director—with premium graphic and web design, the studio replaces chaotic internal workflows with standardized digital architecture. Caro Creative builds the content supply chains, launch funnels, and brand infrastructure required to eliminate operational drag and drive efficient business scaling.</p>
                 <a href="#" class="btn btn-dark">Optimize Your Infrastructure →</a>
             </div>
             <div class="hero-visual">
@@ -340,6 +462,52 @@
             <div class="service-card" style="margin-top: 80px;">
                 <h3>03 / Content Supply Chains</h3>
                 <p>Structuring raw media ingestion into automated publishing workflows. We eliminate tracking disorganization by engineering reach-optimized social architecture, designing scroll-stopping carousel templates, and standardizing engagement tactics to ensure your visual assets drive measurable growth.</p>
+            </div>
+        </section>
+
+
+
+        <section class="logo-marquee-section" aria-label="Selected client and partner logos">
+            <div class="logo-marquee-card">
+                <span class="logo-marquee-label">Trusted by founders, teams, and mission-led organizations</span>
+                <div class="logo-marquee">
+                    <div class="logo-track">
+                            <div class="logo-item"><img src="home/logos/logo-01.png" alt="Client logo 1"></div>
+                            <div class="logo-item"><img src="home/logos/logo-02.png" alt="Client logo 2"></div>
+                            <div class="logo-item"><img src="home/logos/logo-03.png" alt="Client logo 3"></div>
+                            <div class="logo-item"><img src="home/logos/logo-04.png" alt="Client logo 4"></div>
+                            <div class="logo-item"><img src="home/logos/logo-05.png" alt="Client logo 5"></div>
+                            <div class="logo-item"><img src="home/logos/logo-06.png" alt="Client logo 6"></div>
+                            <div class="logo-item"><img src="home/logos/logo-07.png" alt="Client logo 7"></div>
+                            <div class="logo-item"><img src="home/logos/logo-08.png" alt="Client logo 8"></div>
+                            <div class="logo-item"><img src="home/logos/logo-09.png" alt="Client logo 9"></div>
+                            <div class="logo-item"><img src="home/logos/logo-10.png" alt="Client logo 10"></div>
+                            <div class="logo-item"><img src="home/logos/logo-11.png" alt="Client logo 11"></div>
+                            <div class="logo-item"><img src="home/logos/logo-12.png" alt="Client logo 12"></div>
+                            <div class="logo-item"><img src="home/logos/logo-13.png" alt="Client logo 13"></div>
+                            <div class="logo-item"><img src="home/logos/logo-14.png" alt="Client logo 14"></div>
+                            <div class="logo-item"><img src="home/logos/logo-15.png" alt="Client logo 15"></div>
+                            <div class="logo-item"><img src="home/logos/logo-16.png" alt="Client logo 16"></div>
+                    </div>
+                    <div class="logo-track" aria-hidden="true">
+                            <div class="logo-item"><img src="home/logos/logo-01.png" alt="Client logo 1"></div>
+                            <div class="logo-item"><img src="home/logos/logo-02.png" alt="Client logo 2"></div>
+                            <div class="logo-item"><img src="home/logos/logo-03.png" alt="Client logo 3"></div>
+                            <div class="logo-item"><img src="home/logos/logo-04.png" alt="Client logo 4"></div>
+                            <div class="logo-item"><img src="home/logos/logo-05.png" alt="Client logo 5"></div>
+                            <div class="logo-item"><img src="home/logos/logo-06.png" alt="Client logo 6"></div>
+                            <div class="logo-item"><img src="home/logos/logo-07.png" alt="Client logo 7"></div>
+                            <div class="logo-item"><img src="home/logos/logo-08.png" alt="Client logo 8"></div>
+                            <div class="logo-item"><img src="home/logos/logo-09.png" alt="Client logo 9"></div>
+                            <div class="logo-item"><img src="home/logos/logo-10.png" alt="Client logo 10"></div>
+                            <div class="logo-item"><img src="home/logos/logo-11.png" alt="Client logo 11"></div>
+                            <div class="logo-item"><img src="home/logos/logo-12.png" alt="Client logo 12"></div>
+                            <div class="logo-item"><img src="home/logos/logo-13.png" alt="Client logo 13"></div>
+                            <div class="logo-item"><img src="home/logos/logo-14.png" alt="Client logo 14"></div>
+                            <div class="logo-item"><img src="home/logos/logo-15.png" alt="Client logo 15"></div>
+                            <div class="logo-item"><img src="home/logos/logo-16.png" alt="Client logo 16"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -372,7 +540,7 @@
             </details>
             
             <details>
-                <summary>What industries does Caro Creative Co. serve?</summary>
+                <summary>What industries does Caro Creative serve?</summary>
                 <p>The studio specializes in building infrastructure for educational entrepreneurs, high-ticket business coaches, scaling service founders, and cross-border non-profit organizations.</p>
             </details>
             
@@ -383,7 +551,7 @@
         </section>
 
         <footer>
-            <div>© 2026 Caro Creative Co. All Rights Reserved.</div>
+            <div>© 2026 Caro Creative All Rights Reserved.</div>
             <div>System Architecture • Brand Operations</div>
         </footer>
     </div>
