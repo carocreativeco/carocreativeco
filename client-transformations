@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Client Transformations | Caro Creative Co.</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #FDFBF7;
+      --bg-matcha: #F0F5E6;
+      --text-charcoal: #0F1115;
+      --text-slate: #2F3E32;
+      --accent-lime: #B5FF3A;
+      --line-soft: rgba(15, 17, 21, 0.10);
+      --glass: rgba(253, 251, 247, 0.62);
+      --font-serif: 'Playfair Display', serif;
+      --font-sans: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 86% 12%, rgba(181, 255, 58, 0.18), transparent 28rem),
+        radial-gradient(circle at 12% 48%, rgba(240, 245, 230, 0.9), transparent 26rem),
+        var(--bg-cream);
+      color: var(--text-charcoal);
+      font-family: var(--font-sans);
+      letter-spacing: 0.03em;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    h1,
+    h2,
+    h3,
+    .brand-logo {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      color: var(--text-charcoal);
+    }
+
+    p {
+      color: var(--text-slate);
+    }
+
+    .container {
+      width: min(100% - 56px, 1240px);
+      margin: 0 auto;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 14px 30px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.92rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-lime {
+      background: var(--accent-lime);
+      color: var(--text-charcoal);
+      box-shadow: 0 18px 38px rgba(181, 255, 58, 0.26);
+    }
+
+    .btn-lime:hover {
+      background: var(--text-charcoal);
+      color: var(--bg-cream);
+    }
+
+    .btn-ghost {
+      background: rgba(253, 251, 247, 0.58);
+      border-color: var(--line-soft);
+      color: var(--text-charcoal);
+      backdrop-filter: blur(14px);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
+      padding: 22px 0;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      min-width: 160px;
+    }
+
+    .brand-logo img {
+      display: block;
+      width: clamp(150px, 15vw, 210px);
+      height: auto;
+    }
+
+    nav ul {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-charcoal);
+    }
+
+    nav a:hover {
+      color: var(--text-slate);
+    }
+
+    .hero {
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1.04fr) minmax(320px, 0.96fr);
+      gap: clamp(38px, 6vw, 84px);
+      align-items: center;
+      padding: clamp(64px, 8vw, 104px) 0 clamp(52px, 7vw, 88px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      color: var(--text-slate);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--accent-lime);
+    }
+
+    .hero h1 {
+      max-width: 820px;
+      font-size: clamp(3.2rem, 7vw, 6.6rem);
+      line-height: 0.98;
+      margin-bottom: 28px;
+    }
+
+    .hero-copy {
+      max-width: 690px;
+      font-size: clamp(1rem, 1.55vw, 1.16rem);
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .hero-visual {
+      position: relative;
+      min-height: 520px;
+      border-radius: 64px 170px 64px 64px;
+      background:
+        radial-gradient(circle at 72% 20%, rgba(181, 255, 58, 0.28), transparent 14rem),
+        linear-gradient(145deg, rgba(240, 245, 230, 0.92), rgba(253, 251, 247, 0.55));
+      border: 1px solid rgba(255, 255, 255, 0.78);
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(15, 17, 21, 0.07);
+    }
+
+    .hero-visual::before,
+    .hero-visual::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 17, 21, 0.08);
+    }
+
+    .hero-visual::before {
+      width: 460px;
+      height: 460px;
+      left: -190px;
+      bottom: -210px;
+      background: rgba(253, 251, 247, 0.34);
+      backdrop-filter: blur(12px);
+    }
+
+    .hero-visual::after {
+      width: 280px;
+      height: 280px;
+      right: -64px;
+      top: -74px;
+      background: rgba(181, 255, 58, 0.16);
+      filter: blur(2px);
+    }
+
+    .mockup-stack {
+      position: absolute;
+      inset: 54px 42px 50px;
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      z-index: 1;
+    }
+
+    .mockup-card {
+      width: min(100%, 420px);
+      border-radius: 44px;
+      background: var(--glass);
+      border: 1px solid rgba(255, 255, 255, 0.88);
+      box-shadow: 0 22px 48px rgba(15, 17, 21, 0.08);
+      padding: 26px;
+      backdrop-filter: blur(18px);
+    }
+
+    .mockup-card:nth-child(2) {
+      justify-self: end;
+      width: min(88%, 360px);
+      transform: translateY(-4px);
+    }
+
+    .mockup-label {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-bottom: 16px;
+      margin-bottom: 18px;
+      border-bottom: 1px solid var(--line-soft);
+      color: var(--text-charcoal);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .mockup-lines {
+      display: grid;
+      gap: 10px;
+    }
+
+    .mockup-lines span {
+      display: block;
+      height: 13px;
+      border-radius: 999px;
+      background: rgba(47, 62, 50, 0.10);
+    }
+
+    .mockup-lines span:nth-child(1) { width: 86%; }
+    .mockup-lines span:nth-child(2) { width: 62%; }
+    .mockup-lines span:nth-child(3) { width: 74%; background: rgba(181, 255, 58, 0.62); }
+
+    .section {
+      padding: clamp(56px, 7vw, 92px) 0;
+    }
+
+    .section-heading {
+      display: grid;
+      grid-template-columns: 0.75fr 1.25fr;
+      gap: 42px;
+      align-items: end;
+      padding-bottom: 32px;
+      border-bottom: 1px solid var(--line-soft);
+      margin-bottom: 42px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.5rem, 5vw, 4.5rem);
+      line-height: 1.02;
+    }
+
+    .section-heading p {
+      max-width: 680px;
+      justify-self: end;
+      font-size: 1rem;
+    }
+
+    .story-grid {
+      column-count: 2;
+      column-gap: 32px;
+    }
+
+    .story-card {
+      display: inline-block;
+      width: 100%;
+      break-inside: avoid;
+      margin: 0 0 32px;
+      border-radius: 54px;
+      background: rgba(240, 245, 230, 0.78);
+      border: 1px solid rgba(15, 17, 21, 0.06);
+      overflow: hidden;
+      backdrop-filter: blur(14px);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .story-card:nth-child(even) {
+      margin-top: 54px;
+      background: rgba(253, 251, 247, 0.68);
+    }
+
+    .story-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 60px rgba(15, 17, 21, 0.06);
+    }
+
+    .story-summary {
+      list-style: none;
+      cursor: pointer;
+    }
+
+    .story-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .story-top {
+      position: relative;
+      min-height: 250px;
+      padding: 34px;
+      background:
+        radial-gradient(circle at 78% 18%, rgba(181, 255, 58, 0.32), transparent 12rem),
+        linear-gradient(135deg, rgba(253, 251, 247, 0.66), rgba(240, 245, 230, 0.92));
+      overflow: hidden;
+      display: grid;
+      align-content: space-between;
+      gap: 34px;
+    }
+
+    .story-top::after {
+      content: "";
+      position: absolute;
+      right: -38px;
+      bottom: -58px;
+      width: 220px;
+      height: 220px;
+      border-radius: 48px 120px 48px 48px;
+      border: 1px solid rgba(15, 17, 21, 0.08);
+      background: rgba(253, 251, 247, 0.34);
+      transform: rotate(-10deg);
+      pointer-events: none;
+    }
+
+    .story-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      background: var(--accent-lime);
+      color: var(--text-charcoal);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .story-client {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 12px;
+      color: var(--text-slate);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .story-pill {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      max-width: 92%;
+      margin-bottom: 16px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(181, 255, 58, 0.44);
+      border: 1px solid rgba(15, 17, 21, 0.08);
+      color: var(--text-charcoal);
+      font-size: 0.68rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .story-top h3 {
+      position: relative;
+      z-index: 1;
+      max-width: 430px;
+      font-size: clamp(1.85rem, 3vw, 2.8rem);
+      line-height: 1.02;
+    }
+
+    .expand-indicator {
+      position: absolute;
+      right: 28px;
+      top: 28px;
+      z-index: 2;
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: rgba(253, 251, 247, 0.72);
+      border: 1px solid rgba(15, 17, 21, 0.08);
+      backdrop-filter: blur(12px);
+    }
+
+    .expand-indicator::before,
+    .expand-indicator::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 16px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--text-charcoal);
+      transform: translate(-50%, -50%);
+      transition: transform 0.2s ease;
+    }
+
+    .expand-indicator::after {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+
+    .story-card[open] .expand-indicator::after {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    .story-body {
+      padding: 34px;
+      display: grid;
+      gap: 26px;
+      animation: revealStory 0.28s ease;
+    }
+
+    @keyframes revealStory {
+      from {
+        opacity: 0;
+        transform: translateY(-6px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .story-section {
+      display: grid;
+      gap: 10px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .story-section:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .story-section h4 {
+      color: var(--text-charcoal);
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .story-section p {
+      font-size: 0.97rem;
+    }
+
+    .system-audit {
+      border-radius: 58px;
+      background: rgba(240, 245, 230, 0.76);
+      border: 1px solid rgba(15, 17, 21, 0.06);
+      padding: clamp(28px, 5vw, 54px);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .system-audit::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      right: -68px;
+      top: -80px;
+      border-radius: 999px;
+      background: rgba(181, 255, 58, 0.18);
+      filter: blur(18px);
+    }
+
+    .audit-header {
+      position: relative;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 34px;
+    }
+
+    .audit-header h2 {
+      font-size: clamp(2.4rem, 4.2vw, 4rem);
+      line-height: 1.02;
+    }
+
+    .audit-header p {
+      max-width: 470px;
+    }
+
+    table {
+      position: relative;
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+    }
+
+    th,
+    td {
+      padding: 22px 18px;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid rgba(15, 17, 21, 0.10);
+    }
+
+    th {
+      color: var(--text-charcoal);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    td {
+      color: var(--text-slate);
+    }
+
+    td:first-child {
+      color: var(--text-charcoal);
+      font-weight: 700;
+    }
+
+    tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .after {
+      color: var(--text-charcoal);
+      font-weight: 700;
+    }
+
+    .faq {
+      max-width: 880px;
+      margin: 0 auto;
+    }
+
+    .faq h2 {
+      font-size: clamp(2.5rem, 4.8vw, 4.4rem);
+      line-height: 1.04;
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .faq details {
+      border-bottom: 1px solid var(--line-soft);
+      padding: 24px 0;
+    }
+
+    .faq summary {
+      position: relative;
+      padding-right: 44px;
+      cursor: pointer;
+      list-style: none;
+      color: var(--text-charcoal);
+      font-size: clamp(1.05rem, 1.7vw, 1.26rem);
+      font-weight: 700;
+    }
+
+    .faq summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .faq summary::after {
+      content: "+";
+      position: absolute;
+      top: 50%;
+      right: 0;
+      width: 34px;
+      height: 34px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      background: rgba(240, 245, 230, 0.9);
+      transform: translateY(-50%);
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .faq details[open] summary::after {
+      content: "−";
+      background: var(--accent-lime);
+    }
+
+    .faq details p {
+      max-width: 730px;
+      padding-top: 18px;
+      font-size: 0.98rem;
+    }
+
+    .footer-wrap {
+      padding: 34px 0 38px;
+      border-top: 1px solid var(--line-soft);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: start;
+      color: var(--text-slate);
+      font-size: 0.86rem;
+    }
+
+    .footer-wrap div:last-child {
+      text-align: right;
+    }
+
+    @media (max-width: 920px) {
+      .container {
+        width: min(100% - 36px, 1240px);
+      }
+
+      header {
+        align-items: flex-start;
+      }
+
+      nav ul {
+        display: none;
+      }
+
+      .hero,
+      .section-heading,
+      .audit-header {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-visual {
+        min-height: 420px;
+        border-radius: 52px 120px 52px 52px;
+      }
+
+      .section-heading p {
+        justify-self: start;
+      }
+
+      .story-grid {
+        column-count: 1;
+      }
+
+      .story-card:nth-child(even) {
+        margin-top: 0;
+      }
+
+      .table-scroll {
+        overflow-x: auto;
+        padding-bottom: 8px;
+      }
+
+      table {
+        min-width: 720px;
+      }
+
+      .footer-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-wrap div:last-child {
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .btn {
+        width: 100%;
+      }
+
+      header .btn {
+        display: none;
+      }
+
+      .hero-actions {
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: 360px;
+      }
+
+      .mockup-stack {
+        inset: 34px 22px;
+      }
+
+      .mockup-card {
+        padding: 22px;
+        border-radius: 38px;
+      }
+
+      .story-top,
+      .story-body {
+        padding: 28px;
+      }
+
+      .story-card,
+      .system-audit {
+        border-radius: 44px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <a href="index.html" class="brand-logo" aria-label="Caro Creative Co. home">
+        <img src="caro-logo.png" alt="Caro Creative Co.">
+      </a>
+
+      <nav aria-label="Primary navigation">
+        <ul>
+          <li><a href="index.html">System Architecture</a></li>
+          <li><a href="#stories">Client Transformations</a></li>
+          <li><a href="#audit">The System Audit</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </nav>
+
+      <a href="#audit" class="btn btn-lime">Request System Audit</a>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-content">
+          <span class="eyebrow">Client Transformations</span>
+          <h1>Proven Infrastructure: Client Transformations.</h1>
+          <p class="hero-copy">Caro Creative Co. transforms chaotic operational bottlenecks into systemized brand infrastructure. Read how scaling founders and organizations have reclaimed their time through our signature audit and engineering frameworks.</p>
+          <div class="hero-actions">
+            <a href="#stories" class="btn btn-lime">Read the Transformations</a>
+            <a href="#audit" class="btn btn-ghost">View the Audit Framework</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="mockup-stack">
+            <div class="mockup-card">
+              <div class="mockup-label"><span>Audit Map</span><span>01</span></div>
+              <div class="mockup-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+
+            <div class="mockup-card">
+              <div class="mockup-label"><span>Delivery System</span><span>Live</span></div>
+              <div class="mockup-lines">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="stories">
+        <div class="section-heading">
+          <h2>From bottleneck to brand engine.</h2>
+          <p>Each engagement begins with a diagnostic lens: where is time being lost, what assets are missing, and which communication systems need to become repeatable before the brand can scale gracefully? Expand each story to review the bottleneck, intervention, and result across nine validated system builds.</p>
+        </div>
+
+        <div class="story-grid">
+          <details class="story-card" open>
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">01</span>
+                <div>
+                  <p class="story-client">BeInspired Coaching</p>
+                  <span class="story-pill">Brand footprint / professionalization</span>
+                  <h3>DEI Coaching Practice.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>A solo DEI coaching practice experiencing rapid scale—growing from one coach to a team of ten in two years—lacked the foundational digital infrastructure to support its expanded capacity. The firm operated with only a logo, leaving them without a digital footprint or a professional landing spot for enterprise-level prospects.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Engineered a scalable brand identity and digital presence. This included developing a cohesive visual language around the existing logo, designing a clean, professional website architecture to house service information, and establishing a professional digital footprint that aligns with the firm’s expanded team and service capacity.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Provided the firm with a unified digital authority, enabling them to transition from a word-of-mouth solo practice to a professionally branded DEI coaching organization capable of capturing and managing high-value client interest.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="story-card">
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">02</span>
+                <div>
+                  <p class="story-client">Every Child Fed</p>
+                  <span class="story-pill">Integrated donation / CMS management</span>
+                  <h3>Non-Profit Organization.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>The organization was hindered by a technical platform—a legacy two-page WordPress site—that their internal team could not manage. This created a recurring technical bottleneck that prevented consistent blogging, limited donor communication, and hindered the organization’s ability to drive traffic to their mission.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Engineered a high-performance Squarespace architecture that prioritized team-led administration. The system included a frictionless, integrated donation platform, a simplified editorial interface for consistent content publishing, and an automated newsletter subscription engine that unified donor engagement.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Transformed an inaccessible technical liability into a scalable, donor-facing communication engine. The organization now manages its own digital presence and maintains consistent donor relations without requiring external technical support.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="story-card">
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">03</span>
+                <div>
+                  <p class="story-client">Catalyst Consulting</p>
+                  <span class="story-pill">Lead capture systems / automated funnels</span>
+                  <h3>Business Coaching.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>The client required a digital architecture to bridge the gap between social authority and lead conversion. Without a dedicated platform to host their unique methodology or a mechanism to capture leads, their influence remained unmonetized and disorganized.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Engineered a comprehensive Kajabi-based ecosystem to operationalize their intellectual property. This involved designing a professional site to host their bio and philosophy, while simultaneously building an integrated “lead capture” system featuring a free-access mini-course and automated email drip sequences.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Created a self-sustaining lead generation engine. The firm now hosts a high-converting digital portal that automatically captures and nurtures prospective clients, moving them from initial interest to qualified lead without manual oversight.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="story-card">
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">04</span>
+                <div>
+                  <p class="story-client">Toniic</p>
+                  <span class="story-pill">High-density content engineering</span>
+                  <h3>Impact Investing Firm.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>The firm possessed a wealth of high-density educational content for impact investors but lacked the structural visual assets necessary to make that information digestible, engaging, or teachable. Their intellectual property was trapped in text-heavy formats that hindered educational impact.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Executed a full-scale content engineering project. This included transforming dense investor data into professional, visually cohesive course modules, high-impact presentation decks, and standardized instructor scripts that enabled a seamless educational delivery experience.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Successfully operationalized complex investor education. By engineering a high-quality visual and structural framework for their courses, the firm now delivers their intellectual property with the authority and clarity required to educate and convert sophisticated impact investors.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="story-card">
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">05</span>
+                <div>
+                  <p class="story-client">The nZone</p>
+                  <span class="story-pill">Communication strategy / templates + cadence</span>
+                  <h3>Youth & Community Sports Facility.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>Despite having an established visual identity, the organization suffered from a lack of strategic direction. Client communication was reactive, inconsistent, and lacked a unified brand voice, leading to missed engagement opportunities in newsletters and social channels.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Implemented Brand Infrastructure Engineering to move the organization from reactive to proactive communication. This included the development of standardized, elite social media and newsletter templates, the implementation of a structured content supply chain, and the design of a predictable cadence for all client-facing communication.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Transformed fragmented social and email efforts into a unified, high-impact communication engine. This standardized system allows the team to deploy consistent, brand-aligned messaging that drives predictable community engagement without needing to reinvent the strategy for every post.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="story-card">
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">06</span>
+                <div>
+                  <p class="story-client">Miss Patty Cake</p>
+                  <span class="story-pill">Wix / Shopify / YouTube integration</span>
+                  <h3>Multi-platform Children’s Entertainer.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>As a high-growth educator, managing disparate revenue streams—live performance bookings, book sales, and video-on-demand content—created significant administrative drag. The fragmented back-end of the website, built across Wix and Shopify, prevented seamless conversion and created a persistent manual fulfillment bottleneck.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Engineered a centralized digital back-end architecture to unify the brand ecosystem. This included technical optimization of the Wix and Shopify frameworks, streamlining the connection between YouTube content distribution and product sales, and establishing a standardized internal repository for performance and booking assets.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Created a “hands-off” digital infrastructure that allows the brand to scale product distribution without constant manual intervention, successfully reclaiming significant executive focus for creative production and performance.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="story-card">
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">07</span>
+                <div>
+                  <p class="story-client">AB Cashflow Coach</p>
+                  <span class="story-pill">Launch / webinar architecture</span>
+                  <h3>Real Estate Investing Influencer.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>Despite maintaining a multi-million-dollar portfolio and high-value influence, the client lacked the digital architecture to monetize his expertise effectively. The absence of a structured educational ecosystem and a professional-grade launch funnel limited his ability to educate new investors or showcase high-value intellectual property like his book.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Executed a two-phase infrastructure build. Phase 1 involved engineering a Kajabi-based educational platform, including the end-to-end design of a 15-module curriculum complete with proprietary downloadable tools and automated email drip sequences. Phase 2 implemented a high-conversion webinar launch strategy, incorporating specialized content writing, presentation deck engineering, and executive speech coaching.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Transformed an influential social presence into a scalable, high-converting digital education business, successfully launching a flagship 15-module course and establishing a predictable, reproducible funnel for ongoing revenue generation.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="story-card">
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">08</span>
+                <div>
+                  <p class="story-client">One Week Missions Experiences</p>
+                  <span class="story-pill">Grand Design / international workflows</span>
+                  <h3>International Missions Non-Profit.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>The founder possessed deep domain expertise but lacked the digital architecture to manage the high-complexity, multi-part workflow of international mission operations. The organization lacked internal onboarding systems, training protocols, and traveler-management workflows, making the process of scaling impossible for a small team.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Designed a comprehensive operational mission-management system. This included engineering a full-scale traveler onboarding pipeline, creating structured training schedules, producing branded travel guides, and standardizing the technical workflow for every stage—from initial marketing and traveler application to on-the-ground management and post-trip return.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Created a sophisticated operational framework that allows a lean two-person team to seamlessly manage the entire marketing-to-travel lifecycle for over 75 individual participants, ensuring predictable, high-quality mission experiences at scale.</p>
+              </div>
+            </div>
+          </details>
+
+          <details class="story-card">
+            <summary class="story-summary">
+              <div class="story-top">
+                <span class="story-number">09</span>
+                <div>
+                  <p class="story-client">Darrell Green</p>
+                  <span class="story-pill">All-in-One Pinnacle / philanthropic impact</span>
+                  <h3>NFL Hall of Famer & Entrepreneur.</h3>
+                </div>
+                <span class="expand-indicator" aria-hidden="true"></span>
+              </div>
+            </summary>
+
+            <div class="story-body">
+              <div class="story-section">
+                <h4>Operational Bottleneck</h4>
+                <p>The client’s diverse revenue streams—signed memorabilia, high-profile appearances, and motivational speaking—were decentralized, creating excessive management complexity for his executive assistant. Furthermore, there was no unified digital bridge connecting his commercial personal brand to his philanthropic non-profit efforts.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>System Intervention</h4>
+                <p>Engineered a centralized Kajabi-based ecosystem that unified the brand’s professional and charitable assets. This included designing a consolidated storefront for diverse services, developing a comprehensive course platform for professional athlete development, building automated email drip sequences, and implementing a dedicated non-profit integration to streamline cross-brand traffic.</p>
+              </div>
+
+              <div class="story-section">
+                <h4>Result</h4>
+                <p>Created a “single-pane-of-glass” management platform that empowers the administrative team to operate the business efficiently while maximizing the conversion rate between commercial influence and philanthropic impact.</p>
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <section class="section" id="audit">
+        <div class="system-audit">
+          <div class="audit-header">
+            <h2>The System Audit.</h2>
+            <p>A focused look at the operational shift Caro Creative Co. is designed to create: fewer loose ends, clearer assets, cleaner ownership, and a more repeatable brand engine.</p>
+          </div>
+
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Metric</th>
+                  <th>Before Caro Creative Co.</th>
+                  <th>After Caro Creative Co.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Launch Logistics</td>
+                  <td>Timelines, assets, and deliverables live in scattered locations with unclear dependencies.</td>
+                  <td class="after">Centralized launch maps, aligned timelines, and ready-to-deploy conversion assets.</td>
+                </tr>
+                <tr>
+                  <td>Brand Assets</td>
+                  <td>Templates are inconsistent, hard to find, or rebuilt from scratch for each campaign.</td>
+                  <td class="after">Standardized brand systems, reusable templates, and polished collateral libraries.</td>
+                </tr>
+                <tr>
+                  <td>Workflow State</td>
+                  <td>Reactive communication, manual follow-up, and founder-dependent approvals.</td>
+                  <td class="after">Documented workflows, cleaner handoffs, and proactive communication rhythms.</td>
+                </tr>
+                <tr>
+                  <td>Team Efficiency</td>
+                  <td>Creative energy is spent locating files, clarifying direction, and correcting inconsistencies.</td>
+                  <td class="after">Teams move faster with clear systems, fewer bottlenecks, and stronger execution confidence.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section class="section faq" id="faq">
+        <h2>Frequently asked questions.</h2>
+
+        <details>
+          <summary>How does Caro validate project success?</summary>
+          <p>Success is validated by the operational change the system creates. Caro Creative Co. looks at whether bottlenecks have been removed, assets are easier to deploy, communication is more consistent, and the founder or internal team can execute without rebuilding strategy from scratch every time.</p>
+        </details>
+
+        <details>
+          <summary>Does the studio handle internal training?</summary>
+          <p>Yes. When a system is built, the handoff can include internal documentation, workflow guidance, template usage direction, and training support so the team understands how to maintain the infrastructure after launch.</p>
+        </details>
+
+        <details>
+          <summary>What is the Fractional CMO model advantage?</summary>
+          <p>The Fractional CMO model gives a growing organization access to senior-level strategy without requiring a full-time executive hire. It connects brand direction, content systems, launch planning, and communication infrastructure so design work is tied directly to business execution.</p>
+        </details>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-wrap">
+        <div>© 2026 Caro Creative Co. All Rights Reserved.</div>
+        <div>System Architecture • Brand Operations • Client Transformations</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
