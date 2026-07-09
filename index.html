@@ -81,10 +81,12 @@
         }
 
         header {
+            position: relative;
             padding: 22px 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 28px;
         }
 
         .brand-logo {
@@ -100,22 +102,37 @@
             height: auto;
         }
 
-        nav ul {
+        .site-nav ul {
             list-style: none;
             display: flex;
-            gap: 40px;
+            align-items: center;
+            gap: 34px;
         }
 
-        nav a {
+        .site-nav a {
             text-decoration: none;
             color: var(--text-charcoal);
-            font-size: 0.9rem;
-            font-weight: 500;
+            font-size: 0.88rem;
+            font-weight: 600;
             transition: color 0.3s;
         }
 
-        nav a:hover {
+        .site-nav a:hover {
             color: var(--text-slate);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            width: 46px;
+            height: 46px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 17, 21, 0.12);
+            background: rgba(253, 251, 247, 0.72);
+            color: var(--text-charcoal);
+            font-size: 1.35rem;
+            line-height: 1;
+            cursor: pointer;
+            backdrop-filter: blur(14px);
         }
 
         .hero {
@@ -415,8 +432,45 @@
             .hero-content h1 {
                 font-size: 3.5rem;
             }
-            nav ul {
-                display: none; 
+            .mobile-menu-toggle {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                order: 3;
+            }
+
+            .header-cta {
+                display: none;
+            }
+
+            .site-nav {
+                position: absolute;
+                top: calc(100% + 14px);
+                left: 0;
+                right: 0;
+                z-index: 100;
+                display: none;
+                padding: 22px;
+                border-radius: 34px;
+                background: rgba(253, 251, 247, 0.96);
+                border: 1px solid rgba(15, 17, 21, 0.10);
+                box-shadow: 0 24px 60px rgba(15, 17, 21, 0.10);
+                backdrop-filter: blur(18px);
+            }
+
+            .site-nav.is-open {
+                display: block;
+            }
+
+            .site-nav ul {
+                display: grid;
+                gap: 8px;
+            }
+
+            .site-nav a {
+                display: block;
+                padding: 13px 4px;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -425,16 +479,23 @@
 
     <div class="container">
         <header>
-            <a href="#" class="brand-logo" aria-label="Caro Creative home"><img src="caro-logo.png" alt="Caro Creative"></a>
-            <nav>
+            <a href="./" class="brand-logo" aria-label="Caro Creative home">
+                <img src="../caro-logo.png" alt="Caro Creative">
+            </a>
+
+            <button class="mobile-menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">☰</button>
+
+            <nav class="site-nav" aria-label="Primary navigation">
                 <ul>
-                    <li><a href="#">System Architecture</a></li>
-                    <li><a href="client-transformations/index.html">Client Transformations</a></li>
-                    <li><a href="dossier/">Creative Archive</a></li>
-                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#services">System Architecture</a></li>
+                    <li><a href="../client-transformations/index.html">Client Transformations</a></li>
+                    <li><a href="../insights/index.html">Insights</a></li>
+                    <li><a href="../dossier/index.html">Dossier</a></li>
+                    <li><a href="#faq">FAQ</a></li>
                 </ul>
             </nav>
-            <a href="#" class="btn btn-lime">Request System Audit</a>
+
+            <a href="#faq" class="btn btn-lime header-cta">Request System Audit</a>
         </header>
 
         <section class="hero">
@@ -451,7 +512,7 @@
             </div>
         </section>
 
-        <section class="services">
+        <section class="services" id="services">
             <div class="service-card">
                 <h3>01 / Launch Operations</h3>
                 <p>Turning chaotic product calendars into predictable, automated conversion pathways. We design digital course portals, webinar structures, and timelines to deliver intellectual property to market flawlessly.</p>
@@ -473,40 +534,40 @@
                 <span class="logo-marquee-label">Trusted by founders, teams, and mission-led organizations</span>
                 <div class="logo-marquee">
                     <div class="logo-track">
-                            <div class="logo-item"><img src="home/logos/logo-01.png" alt="Client logo 1"></div>
-                            <div class="logo-item"><img src="home/logos/logo-02.png" alt="Client logo 2"></div>
-                            <div class="logo-item"><img src="home/logos/logo-03.png" alt="Client logo 3"></div>
-                            <div class="logo-item"><img src="home/logos/logo-04.png" alt="Client logo 4"></div>
-                            <div class="logo-item"><img src="home/logos/logo-05.png" alt="Client logo 5"></div>
-                            <div class="logo-item"><img src="home/logos/logo-06.png" alt="Client logo 6"></div>
-                            <div class="logo-item"><img src="home/logos/logo-07.png" alt="Client logo 7"></div>
-                            <div class="logo-item"><img src="home/logos/logo-08.png" alt="Client logo 8"></div>
-                            <div class="logo-item"><img src="home/logos/logo-09.png" alt="Client logo 9"></div>
-                            <div class="logo-item"><img src="home/logos/logo-10.png" alt="Client logo 10"></div>
-                            <div class="logo-item"><img src="home/logos/logo-11.png" alt="Client logo 11"></div>
-                            <div class="logo-item"><img src="home/logos/logo-12.png" alt="Client logo 12"></div>
-                            <div class="logo-item"><img src="home/logos/logo-13.png" alt="Client logo 13"></div>
-                            <div class="logo-item"><img src="home/logos/logo-14.png" alt="Client logo 14"></div>
-                            <div class="logo-item"><img src="home/logos/logo-15.png" alt="Client logo 15"></div>
-                            <div class="logo-item"><img src="home/logos/logo-16.png" alt="Client logo 16"></div>
+                            <div class="logo-item"><img src="logos/logo-01.png" alt="Client logo 1"></div>
+                            <div class="logo-item"><img src="logos/logo-02.png" alt="Client logo 2"></div>
+                            <div class="logo-item"><img src="logos/logo-03.png" alt="Client logo 3"></div>
+                            <div class="logo-item"><img src="logos/logo-04.png" alt="Client logo 4"></div>
+                            <div class="logo-item"><img src="logos/logo-05.png" alt="Client logo 5"></div>
+                            <div class="logo-item"><img src="logos/logo-06.png" alt="Client logo 6"></div>
+                            <div class="logo-item"><img src="logos/logo-07.png" alt="Client logo 7"></div>
+                            <div class="logo-item"><img src="logos/logo-08.png" alt="Client logo 8"></div>
+                            <div class="logo-item"><img src="logos/logo-09.png" alt="Client logo 9"></div>
+                            <div class="logo-item"><img src="logos/logo-10.png" alt="Client logo 10"></div>
+                            <div class="logo-item"><img src="logos/logo-11.png" alt="Client logo 11"></div>
+                            <div class="logo-item"><img src="logos/logo-12.png" alt="Client logo 12"></div>
+                            <div class="logo-item"><img src="logos/logo-13.png" alt="Client logo 13"></div>
+                            <div class="logo-item"><img src="logos/logo-14.png" alt="Client logo 14"></div>
+                            <div class="logo-item"><img src="logos/logo-15.png" alt="Client logo 15"></div>
+                            <div class="logo-item"><img src="logos/logo-16.png" alt="Client logo 16"></div>
                     </div>
                     <div class="logo-track" aria-hidden="true">
-                            <div class="logo-item"><img src="home/logos/logo-01.png" alt="Client logo 1"></div>
-                            <div class="logo-item"><img src="home/logos/logo-02.png" alt="Client logo 2"></div>
-                            <div class="logo-item"><img src="home/logos/logo-03.png" alt="Client logo 3"></div>
-                            <div class="logo-item"><img src="home/logos/logo-04.png" alt="Client logo 4"></div>
-                            <div class="logo-item"><img src="home/logos/logo-05.png" alt="Client logo 5"></div>
-                            <div class="logo-item"><img src="home/logos/logo-06.png" alt="Client logo 6"></div>
-                            <div class="logo-item"><img src="home/logos/logo-07.png" alt="Client logo 7"></div>
-                            <div class="logo-item"><img src="home/logos/logo-08.png" alt="Client logo 8"></div>
-                            <div class="logo-item"><img src="home/logos/logo-09.png" alt="Client logo 9"></div>
-                            <div class="logo-item"><img src="home/logos/logo-10.png" alt="Client logo 10"></div>
-                            <div class="logo-item"><img src="home/logos/logo-11.png" alt="Client logo 11"></div>
-                            <div class="logo-item"><img src="home/logos/logo-12.png" alt="Client logo 12"></div>
-                            <div class="logo-item"><img src="home/logos/logo-13.png" alt="Client logo 13"></div>
-                            <div class="logo-item"><img src="home/logos/logo-14.png" alt="Client logo 14"></div>
-                            <div class="logo-item"><img src="home/logos/logo-15.png" alt="Client logo 15"></div>
-                            <div class="logo-item"><img src="home/logos/logo-16.png" alt="Client logo 16"></div>
+                            <div class="logo-item"><img src="logos/logo-01.png" alt="Client logo 1"></div>
+                            <div class="logo-item"><img src="logos/logo-02.png" alt="Client logo 2"></div>
+                            <div class="logo-item"><img src="logos/logo-03.png" alt="Client logo 3"></div>
+                            <div class="logo-item"><img src="logos/logo-04.png" alt="Client logo 4"></div>
+                            <div class="logo-item"><img src="logos/logo-05.png" alt="Client logo 5"></div>
+                            <div class="logo-item"><img src="logos/logo-06.png" alt="Client logo 6"></div>
+                            <div class="logo-item"><img src="logos/logo-07.png" alt="Client logo 7"></div>
+                            <div class="logo-item"><img src="logos/logo-08.png" alt="Client logo 8"></div>
+                            <div class="logo-item"><img src="logos/logo-09.png" alt="Client logo 9"></div>
+                            <div class="logo-item"><img src="logos/logo-10.png" alt="Client logo 10"></div>
+                            <div class="logo-item"><img src="logos/logo-11.png" alt="Client logo 11"></div>
+                            <div class="logo-item"><img src="logos/logo-12.png" alt="Client logo 12"></div>
+                            <div class="logo-item"><img src="logos/logo-13.png" alt="Client logo 13"></div>
+                            <div class="logo-item"><img src="logos/logo-14.png" alt="Client logo 14"></div>
+                            <div class="logo-item"><img src="logos/logo-15.png" alt="Client logo 15"></div>
+                            <div class="logo-item"><img src="logos/logo-16.png" alt="Client logo 16"></div>
                     </div>
                 </div>
             </div>
@@ -527,7 +588,7 @@
             </div>
         </section>
 
-        <section class="faq">
+        <section class="faq" id="faq">
             <h2>Frequently Asked Questions</h2>
             
             <details>
@@ -556,6 +617,28 @@
             <div>System Architecture • Brand Operations</div>
         </footer>
     </div>
+
+
+    <script>
+        const menuToggle = document.querySelector('.mobile-menu-toggle');
+        const siteNav = document.querySelector('.site-nav');
+
+        if (menuToggle && siteNav) {
+            menuToggle.addEventListener('click', () => {
+                const isOpen = siteNav.classList.toggle('is-open');
+                menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+                menuToggle.textContent = isOpen ? '×' : '☰';
+            });
+
+            siteNav.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    siteNav.classList.remove('is-open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                    menuToggle.textContent = '☰';
+                });
+            });
+        }
+    </script>
 
 </body>
 </html>
