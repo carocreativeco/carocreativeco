@@ -1,0 +1,1843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Audit the platforms, handoffs, and workflows behind your brand with the Caro Creative Digital Ecosystem Map." />
+  <title>Digital Ecosystem Map | Caro Creative — System Architecture & Brand Engineering</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --canvas: #FDFBF7;
+      --matcha: #F0F5E6;
+      --obsidian: #0F1115;
+      --lime: #B5FF3A;
+      --paper: rgba(253, 251, 247, 0.74);
+      --paper-solid: #FDFBF7;
+      --soft-gray: rgba(15, 17, 21, 0.11);
+      --mid-gray: #667062;
+      --white: #FFFFFF;
+      --radius-xl: 46px;
+      --radius-lg: 34px;
+      --radius-md: 22px;
+      --shadow: 0 28px 70px rgba(15, 17, 21, 0.08);
+      --serif: "Playfair Display", "Ogg", "Recoleta", Georgia, serif;
+      --sans: "Plus Jakarta Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 88% 8%, rgba(181, 255, 58, 0.18), transparent 25rem),
+        radial-gradient(circle at 8% 36%, rgba(240, 245, 230, 0.98), transparent 28rem),
+        var(--canvas);
+      color: var(--obsidian);
+      font-family: var(--sans);
+      line-height: 1.62;
+      letter-spacing: 0.025em;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    h1,
+    h2,
+    h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      letter-spacing: -0.04em;
+      line-height: 0.98;
+    }
+
+    p {
+      color: #2F3E32;
+    }
+
+    .shell {
+      width: min(100% - 52px, 1240px);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: relative;
+      z-index: 100;
+      padding: 20px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .brand-logo {
+      display: inline-flex;
+      align-items: center;
+      text-decoration: none;
+      min-width: 120px;
+    }
+
+    .brand-logo img {
+      display: block;
+      width: clamp(112px, 10vw, 155px);
+      height: auto;
+    }
+
+    .brand-fallback {
+      display: none;
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+    }
+
+    .site-nav ul {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .site-nav a {
+      text-decoration: none;
+      color: var(--obsidian);
+      font-size: 0.84rem;
+      font-weight: 650;
+      letter-spacing: 0.02em;
+      text-transform: none;
+      transition: opacity 0.22s ease;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover {
+      opacity: 0.62;
+    }
+
+    .mobile-menu-toggle {
+      display: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 999px;
+      border: 1px solid rgba(15, 17, 21, 0.12);
+      background: rgba(253, 251, 247, 0.76);
+      color: var(--obsidian);
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
+      backdrop-filter: blur(14px);
+    }
+
+    .btn,
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 14px 26px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease, opacity 0.25s ease;
+    }
+
+    .btn:hover,
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-lime,
+    .button-primary {
+      background: var(--lime);
+      color: var(--obsidian);
+      box-shadow: 0 18px 38px rgba(181, 255, 58, 0.22);
+    }
+
+    .btn-lime:hover,
+    .button-primary:hover {
+      background: var(--obsidian);
+      color: var(--canvas);
+    }
+
+    .button-primary span {
+      color: inherit;
+    }
+
+    .button-secondary {
+      background: rgba(253, 251, 247, 0.70);
+      border-color: var(--soft-gray);
+      color: var(--obsidian);
+    }
+
+    .button:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+      gap: clamp(36px, 6vw, 84px);
+      align-items: center;
+      padding: clamp(58px, 8vw, 112px) 0 clamp(42px, 6vw, 74px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 22px;
+      color: #2F3E32;
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 38px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--lime);
+      box-shadow: none;
+    }
+
+    h1 {
+      max-width: 880px;
+      font-size: clamp(3rem, 6.2vw, 6.1rem);
+      margin: 0 0 28px;
+    }
+
+    .hero-copy p {
+      max-width: 730px;
+      font-size: clamp(1rem, 1.45vw, 1.18rem);
+      color: #2F3E32;
+      line-height: 1.65;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 420px;
+      border-radius: 58px 150px 58px 58px;
+      background:
+        radial-gradient(circle at 76% 15%, rgba(181, 255, 58, 0.34), transparent 12rem),
+        linear-gradient(145deg, rgba(240, 245, 230, 0.96), rgba(253, 251, 247, 0.68));
+      border: 1px solid rgba(255, 255, 255, 0.82);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      color: var(--obsidian);
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 290px;
+      height: 290px;
+      left: -112px;
+      top: -96px;
+      border-radius: 999px;
+      background: rgba(253, 251, 247, 0.42);
+      border: 1px solid rgba(15, 17, 21, 0.08);
+    }
+
+    .hero-card strong {
+      position: relative;
+      z-index: 1;
+      display: block;
+      max-width: 360px;
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.8vw, 3.3rem);
+      font-weight: 400;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      margin-bottom: 26px;
+    }
+
+    .hero-card ul {
+      position: relative;
+      z-index: 1;
+      list-style: none;
+      display: grid;
+      gap: 14px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .hero-card li {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: #2F3E32;
+      font-size: 0.92rem;
+      font-weight: 650;
+    }
+
+    .hero-card li::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--lime);
+      flex: 0 0 auto;
+    }
+
+    .app {
+      margin: 34px 0 90px;
+      background: rgba(253, 251, 247, 0.76);
+      border: 1px solid rgba(15, 17, 21, 0.10);
+      border-radius: 54px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(14px);
+    }
+
+    .app-head {
+      padding: 28px 34px;
+      border-bottom: 1px solid var(--soft-gray);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 24px;
+      align-items: center;
+      background: rgba(240, 245, 230, 0.86);
+    }
+
+    .progress-wrap {
+      display: grid;
+      gap: 9px;
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--obsidian);
+    }
+
+    .progress {
+      width: 100%;
+      height: 8px;
+      background: rgba(15, 17, 21, 0.10);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+
+    .progress > div {
+      height: 100%;
+      width: 20%;
+      background: var(--lime);
+      transition: width 0.3s ease;
+    }
+
+    .step-count {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+    }
+
+    .app-body {
+      padding: clamp(28px, 5vw, 46px);
+      min-height: 620px;
+    }
+
+    .step {
+      display: none;
+      animation: fade 0.35s ease;
+    }
+
+    .step.active {
+      display: block;
+    }
+
+    @keyframes fade {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .step h2 {
+      font-size: clamp(2.2rem, 4.2vw, 4rem);
+      max-width: 840px;
+      margin-bottom: 18px;
+    }
+
+    .step-intro {
+      font-size: 1rem;
+      color: #4E584F;
+      max-width: 760px;
+      margin-bottom: 34px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      max-width: 880px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--obsidian);
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(15, 17, 21, 0.14);
+      border-radius: 20px;
+      padding: 16px 17px;
+      background: rgba(253, 251, 247, 0.74);
+      color: var(--obsidian);
+      outline: none;
+      transition: border 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--obsidian);
+      box-shadow: 0 0 0 4px rgba(181, 255, 58, 0.24);
+      background: var(--canvas);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .option-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .option-card {
+      position: relative;
+    }
+
+    .option-card input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .option-card label {
+      min-height: 132px;
+      border: 1px solid rgba(15, 17, 21, 0.10);
+      border-radius: 28px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      cursor: pointer;
+      background: rgba(253, 251, 247, 0.68);
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .option-card label:hover {
+      transform: translateY(-2px);
+      border-color: rgba(15, 17, 21, 0.22);
+      background: rgba(240, 245, 230, 0.68);
+    }
+
+    .option-card input:checked + label {
+      background: rgba(240, 245, 230, 0.92);
+      border-color: var(--obsidian);
+      box-shadow: inset 0 0 0 1px var(--obsidian);
+    }
+
+    .option-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      background: var(--lime);
+      border: 1px solid rgba(15, 17, 21, 0.08);
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+      font-weight: 900;
+    }
+
+    .option-title {
+      font-size: 0.86rem;
+      font-weight: 800;
+      line-height: 1.25;
+      color: var(--obsidian);
+    }
+
+    .question-list {
+      display: grid;
+      gap: 16px;
+      max-width: 940px;
+    }
+
+    .question {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: center;
+      padding: 20px 22px;
+      border: 1px solid rgba(15, 17, 21, 0.10);
+      border-radius: 28px;
+      background: rgba(253, 251, 247, 0.70);
+    }
+
+    .question p {
+      margin: 0;
+      color: var(--obsidian);
+      font-weight: 650;
+    }
+
+    .segmented {
+      display: inline-flex;
+      padding: 4px;
+      gap: 3px;
+      border-radius: 999px;
+      background: rgba(15, 17, 21, 0.08);
+    }
+
+    .segmented input {
+      display: none;
+    }
+
+    .segmented label {
+      padding: 8px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      color: #61645F;
+      font-size: 0.74rem;
+    }
+
+    .segmented input:checked + label {
+      background: var(--obsidian);
+      color: var(--canvas);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 38px;
+      padding-top: 26px;
+      border-top: 1px solid var(--soft-gray);
+      gap: 12px;
+    }
+
+    .results-shell {
+      display: grid;
+      gap: 24px;
+    }
+
+    .score-hero {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 24px;
+    }
+
+    .score-card,
+    .diagnosis-card,
+    .map-card,
+    .case-study-section,
+    .recommendations,
+    .lead-card {
+      border-radius: 34px;
+      border: 1px solid rgba(15, 17, 21, 0.10);
+      padding: 28px;
+    }
+
+    .score-card {
+      background: var(--obsidian);
+      color: var(--canvas);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+    }
+
+    .score-number {
+      font-family: var(--serif);
+      font-size: clamp(4.6rem, 10vw, 8.8rem);
+      line-height: 0.9;
+      color: var(--lime);
+      letter-spacing: -0.06em;
+    }
+
+    .score-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      font-weight: 900;
+      color: rgba(15, 17, 21, 0.58);
+    }
+
+    .score-card .score-label,
+    .score-card #score-caption {
+      color: rgba(253, 251, 247, 0.72);
+    }
+
+    .diagnosis-card {
+      background:
+        radial-gradient(circle at 90% 8%, rgba(181, 255, 58, 0.24), transparent 12rem),
+        rgba(240, 245, 230, 0.88);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .diagnosis-card h3 {
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      margin-bottom: 22px;
+    }
+
+    .diagnosis-card p {
+      font-size: 1rem;
+      color: #2F3E32;
+      max-width: 700px;
+    }
+
+    .map-card,
+    .recommendations {
+      background: rgba(253, 251, 247, 0.74);
+    }
+
+    .map-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: end;
+      margin-bottom: 26px;
+    }
+
+    .map-title h3,
+    .case-study-section h3,
+    .recommendations h3 {
+      font-size: clamp(2rem, 3.5vw, 3.3rem);
+      margin-bottom: 0;
+    }
+
+    .ecosystem {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .node {
+      padding: 16px;
+      border-radius: 24px;
+      border: 1px solid rgba(15, 17, 21, 0.10);
+      background: rgba(253, 251, 247, 0.78);
+      min-height: 112px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+    }
+
+    .node.connected::after {
+      content: "";
+      position: absolute;
+      right: -15px;
+      top: 50%;
+      width: 15px;
+      border-top: 2px dashed rgba(15, 17, 21, 0.24);
+    }
+
+    .node:last-child::after {
+      display: none;
+    }
+
+    .node-type {
+      font-size: 0.66rem;
+      color: var(--mid-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 800;
+    }
+
+    .node-name {
+      font-weight: 800;
+    }
+
+    .case-study-section {
+      background:
+        radial-gradient(circle at 95% 0%, rgba(181, 255, 58, 0.22), transparent 16rem),
+        rgba(240, 245, 230, 0.84);
+      overflow: hidden;
+    }
+
+    .case-study-head {
+      display: grid;
+      grid-template-columns: 1fr minmax(240px, 430px);
+      gap: 28px;
+      align-items: end;
+      margin-bottom: 24px;
+    }
+
+    .case-study-head p {
+      margin: 0;
+      color: #4F584F;
+      font-size: 0.95rem;
+    }
+
+    .case-study-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 16px;
+    }
+
+    .case-study-card {
+      min-height: 330px;
+      border: 1px solid rgba(15, 17, 21, 0.12);
+      border-radius: 34px;
+      background: rgba(253, 251, 247, 0.78);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      text-decoration: none;
+      color: var(--obsidian);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .case-study-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 46px rgba(15, 17, 21, 0.08);
+      background: var(--canvas);
+    }
+
+    .case-study-card.primary {
+      background:
+        radial-gradient(circle at 90% 4%, rgba(181, 255, 58, 0.42), transparent 34%),
+        rgba(253, 251, 247, 0.78);
+    }
+
+    .case-study-card::after {
+      content: "↗";
+      position: absolute;
+      top: 22px;
+      right: 22px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--obsidian);
+      color: var(--lime);
+      font-size: 18px;
+    }
+
+    .case-study-number {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--lime);
+      font-weight: 900;
+      font-size: 0.8rem;
+      margin-bottom: 42px;
+    }
+
+    .case-study-client {
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 12px;
+      max-width: calc(100% - 58px);
+    }
+
+    .case-study-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      border: 1px solid rgba(15, 17, 21, 0.14);
+      background: rgba(181, 255, 58, 0.28);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-size: 0.62rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .case-study-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 3.8vw, 3.3rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      margin: 0 0 18px;
+      max-width: 560px;
+    }
+
+    .case-study-card.secondary .case-study-title {
+      font-size: clamp(1.8rem, 3vw, 2.7rem);
+    }
+
+    .case-study-relevance {
+      color: #4F584F;
+      font-size: 0.94rem;
+      max-width: 650px;
+      margin: 0;
+    }
+
+    .case-study-link {
+      display: inline-block;
+      margin-top: 24px;
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid currentColor;
+      align-self: flex-start;
+    }
+
+    .recommendation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .rec {
+      border-radius: 28px;
+      background: rgba(253, 251, 247, 0.74);
+      padding: 20px;
+      border: 1px solid rgba(15, 17, 21, 0.10);
+    }
+
+    .rec span {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: var(--lime);
+      margin-bottom: 16px;
+    }
+
+    .rec h4 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .rec p {
+      margin: 0;
+      color: #4F584F;
+      font-size: 0.88rem;
+    }
+
+    .lead-card {
+      background:
+        radial-gradient(circle at 88% 8%, rgba(181, 255, 58, 0.32), transparent 14rem),
+        var(--obsidian);
+      color: var(--canvas);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .lead-card h3 {
+      font-size: clamp(2.2rem, 4.2vw, 4.3rem);
+      margin-bottom: 14px;
+      color: var(--canvas);
+    }
+
+    .lead-card p {
+      color: rgba(253, 251, 247, 0.76);
+      max-width: 720px;
+      margin-bottom: 0;
+    }
+
+    .lead-card .button {
+      background: var(--lime);
+      color: var(--obsidian);
+      white-space: nowrap;
+    }
+
+    .small-note {
+      font-size: 0.75rem;
+      color: var(--mid-gray);
+      margin-top: 12px;
+    }
+
+    footer {
+      padding: 34px 0 40px;
+      border-top: 1px solid var(--soft-gray);
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: #5F665D;
+      font-size: 0.84rem;
+    }
+
+    .back-to-top {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 80;
+      width: 52px;
+      height: 52px;
+      border-radius: 999px;
+      background: var(--lime);
+      color: var(--obsidian);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 900;
+      border: 1px solid rgba(15, 17, 21, 0.12);
+      box-shadow: 0 18px 38px rgba(15, 17, 21, 0.12);
+    }
+
+    @media (max-width: 1080px) {
+      .option-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .ecosystem {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .node.connected::after {
+        display: none;
+      }
+    }
+
+    @media (max-width: 968px) {
+      .shell {
+        width: min(100% - 36px, 1240px);
+      }
+
+      .brand-logo img {
+        width: 118px;
+      }
+
+      .mobile-menu-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        order: 3;
+      }
+
+      .header-cta {
+        display: none;
+      }
+
+      .site-nav {
+        position: absolute;
+        top: calc(100% + 14px);
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        display: none;
+        padding: 22px;
+        border-radius: 34px;
+        background: rgba(253, 251, 247, 0.97);
+        border: 1px solid rgba(15, 17, 21, 0.10);
+        box-shadow: 0 24px 60px rgba(15, 17, 21, 0.10);
+        backdrop-filter: blur(18px);
+      }
+
+      .site-nav.is-open {
+        display: block;
+      }
+
+      .site-nav ul {
+        display: grid;
+        gap: 8px;
+      }
+
+      .site-nav a {
+        display: block;
+        padding: 13px 4px;
+        font-size: 0.95rem;
+      }
+
+      .hero,
+      .score-hero,
+      .lead-card,
+      .case-study-head,
+      .case-study-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .hero-card {
+        min-height: 330px;
+        border-radius: 52px 118px 52px 52px;
+      }
+
+      .option-grid,
+      .field-grid,
+      .recommendation-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .ecosystem {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .shell {
+        width: min(100% - 28px, 1240px);
+      }
+
+      h1 {
+        font-size: clamp(2.65rem, 13vw, 4.2rem);
+      }
+
+      .hero {
+        padding-top: 34px;
+      }
+
+      .hero-card {
+        min-height: 280px;
+      }
+
+      .app {
+        border-radius: 36px;
+        margin-top: 28px;
+      }
+
+      .app-head,
+      .app-body {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .field-grid,
+      .option-grid,
+      .question,
+      .score-hero,
+      .ecosystem,
+      .recommendation-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .segmented {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .segmented label {
+        flex: 1;
+        text-align: center;
+      }
+
+      .nav {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .button,
+      .btn {
+        width: 100%;
+      }
+
+      footer {
+        flex-direction: column;
+      }
+
+      .back-to-top {
+        right: 16px;
+        bottom: 16px;
+        width: 48px;
+        height: 48px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+      }
+
+      .site-header,
+      .hero,
+      .app-head,
+      .nav,
+      footer,
+      .lead-card,
+      .back-to-top {
+        display: none !important;
+      }
+
+      .app {
+        box-shadow: none;
+        border: none;
+        margin: 0;
+      }
+
+      .app-body {
+        padding: 0;
+      }
+
+      .step {
+        display: none !important;
+      }
+
+      #step-5 {
+        display: block !important;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+  <div class="shell">
+    <header class="site-header">
+      <a href="/" class="brand-logo" aria-label="Caro Creative home">
+        <img src="/caro-logo.png" alt="Caro Creative" onerror="this.style.display='none';this.nextElementSibling.style.display='block';">
+        <span class="brand-fallback">Caro Creative</span>
+      </a>
+
+      <button class="mobile-menu-toggle" aria-label="Open navigation" aria-expanded="false" type="button">
+        ☰
+      </button>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <ul>
+          <li><a href="/#services">System Architecture</a></li>
+          <li><a href="/client-transformations/">Client Transformations</a></li>
+          <li><a href="/insights/">Insights</a></li>
+          <li><a href="/toolkit/">The Toolkit</a></li>
+          <li><a href="/dossier/">Dossier</a></li>
+        </ul>
+      </nav>
+
+      <a href="/#audit" class="btn btn-lime header-cta">Request System Audit</a>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <span class="eyebrow">Interactive Systems Diagnostic</span>
+        <h1>Map the architecture behind your brand.</h1>
+        <p>
+          Audit the platforms, workflows, and handoffs powering your organization.
+          In a few minutes, you’ll expose operational drag, disconnected architecture,
+          and the systems that should be standardized next.
+        </p>
+      </div>
+      <aside class="hero-card">
+        <strong>Scale your impact. Systemize your brand.</strong>
+        <ul>
+          <li>Audit disconnected platforms</li>
+          <li>Expose operational drag</li>
+          <li>Prioritize system repairs</li>
+        </ul>
+      </aside>
+    </section>
+
+    <main class="app" id="ecosystem-app">
+      <div class="app-head">
+        <div class="progress-wrap">
+          <div class="progress-label">
+            <span id="progress-name">Your organization</span>
+            <span id="progress-percent">20%</span>
+          </div>
+          <div class="progress"><div id="progress-bar"></div></div>
+        </div>
+        <div class="step-count"><span id="current-step">1</span> / 5</div>
+      </div>
+
+      <div class="app-body">
+        <section class="step active" id="step-1">
+          <h2>Let’s start with the shape of your organization.</h2>
+          <p class="step-intro">This establishes the operating context behind your customized architecture map.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="orgName">Organization name</label>
+              <input id="orgName" type="text" placeholder="Your business or organization" />
+            </div>
+            <div class="field">
+              <label for="orgType">Organization type</label>
+              <select id="orgType">
+                <option value="service business">Service business</option>
+                <option value="consulting practice">Consulting practice</option>
+                <option value="nonprofit">Nonprofit</option>
+                <option value="creative business">Creative business</option>
+                <option value="small team">Small team</option>
+                <option value="other organization">Other</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="teamSize">Team size</label>
+              <select id="teamSize">
+                <option value="1">Just me</option>
+                <option value="2-5">2–5 people</option>
+                <option value="6-15">6–15 people</option>
+                <option value="16+">16+ people</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="primaryGoal">Primary digital goal</label>
+              <select id="primaryGoal">
+                <option value="generate more qualified leads">Generate more qualified leads</option>
+                <option value="improve the client journey">Improve the client journey</option>
+                <option value="reduce manual work">Reduce manual work</option>
+                <option value="organize content and assets">Organize content and assets</option>
+                <option value="prepare for growth">Prepare for growth</option>
+              </select>
+            </div>
+          </div>
+          <div class="nav">
+            <span></span>
+            <button class="button button-primary" data-next>Build my map <span>↗</span></button>
+          </div>
+        </section>
+
+        <section class="step" id="step-2">
+          <h2>Which platforms are part of your ecosystem?</h2>
+          <p class="step-intro">Select every platform that supports discovery, conversion, delivery, communication, or reporting.</p>
+          <div class="option-grid" id="platform-options"></div>
+          <div class="nav">
+            <button class="button button-secondary" data-back>Back</button>
+            <button class="button button-primary" data-next>Continue <span>↗</span></button>
+          </div>
+        </section>
+
+        <section class="step" id="step-3">
+          <h2>How connected does everything feel?</h2>
+          <p class="step-intro">Answer according to the current operating reality, not the process documented on paper.</p>
+          <div class="question-list" id="connection-questions"></div>
+          <div class="nav">
+            <button class="button button-secondary" data-back>Back</button>
+            <button class="button button-primary" data-next>Continue <span>↗</span></button>
+          </div>
+        </section>
+
+        <section class="step" id="step-4">
+          <h2>Where does the most friction show up?</h2>
+          <p class="step-intro">Select the recurring breakdowns creating the most operational drag across your brand.</p>
+          <div class="option-grid" id="friction-options"></div>
+          <div class="nav">
+            <button class="button button-secondary" data-back>Back</button>
+            <button class="button button-primary" id="generate-results">Generate my ecosystem map <span>↗</span></button>
+          </div>
+        </section>
+
+        <section class="step" id="step-5">
+          <div class="results-shell">
+            <div class="score-hero">
+              <div class="score-card">
+                <div class="score-label">Digital ecosystem score</div>
+                <div class="score-number" id="score">72</div>
+                <div id="score-caption">Connected, with room to streamline.</div>
+              </div>
+              <div class="diagnosis-card">
+                <div>
+                  <span class="eyebrow">Architecture diagnosis</span>
+                  <h3 id="diagnosis-title">Your ecosystem is growing faster than its infrastructure.</h3>
+                  <p id="diagnosis-copy"></p>
+                </div>
+              </div>
+            </div>
+
+            <div class="map-card">
+              <div class="map-title">
+                <div>
+                  <div class="score-label">Current-state architecture</div>
+                  <h3>Your ecosystem map</h3>
+                </div>
+                <button class="button button-secondary" onclick="window.print()">Save as PDF</button>
+              </div>
+              <div class="ecosystem" id="ecosystem-map"></div>
+            </div>
+
+
+            <section class="case-study-section" aria-labelledby="case-study-heading">
+              <div class="case-study-head">
+                <div>
+                  <div class="score-label" style="color:#5b6057;">Matched client transformations</div>
+                  <h3 id="case-study-heading">See the architecture in practice</h3>
+                </div>
+                <p>
+                  These examples were selected from your answers because they address
+                  similar operational constraints, audience needs, or system gaps.
+                </p>
+              </div>
+              <div class="case-study-grid" id="case-study-results"></div>
+            </section>
+
+            <div class="recommendations">
+              <div class="score-label">Priority system repairs</div>
+              <h3>What to fix first</h3>
+              <div class="recommendation-grid" id="recommendations"></div>
+            </div>
+
+            <div class="lead-card">
+              <div>
+                <h3>Ready to replace operational drag with digital architecture?</h3>
+                <p>
+                  A Caro Creative System Architecture Audit translates these findings into a prioritized roadmap for your brand infrastructure, content supply chain, launch pathways, and internal workflows.
+                </p>
+              </div>
+              <a class="button" id="audit-link" href="/#audit">Request System Audit</a>
+            </div>
+
+            <div class="nav">
+              <button class="button button-secondary" id="restart">Start over</button>
+              <button class="button button-primary" onclick="window.print()">Download results <span>↗</span></button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <span>© 2026 Caro Creative All Rights Reserved.</span>
+      <span>System Architecture • Brand Operations</span>
+    </footer>
+  </div>
+
+  <a href="#top" class="back-to-top" aria-label="Back to top">↑</a>
+
+  <script>
+    const menuToggle = document.querySelector('.mobile-menu-toggle');
+    const siteNav = document.querySelector('.site-nav');
+
+    if (menuToggle && siteNav) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = siteNav.classList.toggle('is-open');
+        menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        menuToggle.textContent = isOpen ? '×' : '☰';
+      });
+
+      siteNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          siteNav.classList.remove('is-open');
+          menuToggle.setAttribute('aria-expanded', 'false');
+          menuToggle.textContent = '☰';
+        });
+      });
+    }
+  </script>
+
+  <script>
+    const platforms = [
+      ["website", "Website", "⌂"],
+      ["crm", "CRM or contact database", "◎"],
+      ["email", "Email marketing", "✉"],
+      ["social", "Social media", "◌"],
+      ["forms", "Forms and surveys", "▤"],
+      ["scheduling", "Scheduling", "◷"],
+      ["payments", "Payments or donations", "$"],
+      ["files", "File storage", "□"],
+      ["projects", "Project management", "✓"],
+      ["content", "Content library or CMS", "✦"],
+      ["automation", "Automation tools", "↻"],
+      ["analytics", "Analytics and reporting", "↗"]
+    ];
+
+    const frictions = [
+      ["duplicate", "We enter the same information more than once", "↺"],
+      ["manual", "Important steps depend on someone remembering", "!"],
+      ["lost", "Leads or requests sometimes get lost", "×"],
+      ["scattered", "Files and content live in too many places", "⋯"],
+      ["unclear", "The team is unsure which tool owns what", "?"],
+      ["followup", "Follow-up is inconsistent", "→"],
+      ["reporting", "Reporting takes too much manual effort", "▥"],
+      ["experience", "The client or donor experience feels fragmented", "≈"]
+    ];
+
+    const questions = [
+      ["handoff", "When someone submits a form, their information reaches the right place automatically."],
+      ["followupAuto", "New leads, clients, donors, or members receive a consistent follow-up sequence."],
+      ["singleSource", "Our team knows where the most current version of each asset or record lives."],
+      ["toolClarity", "Each platform has a clear purpose and owner."],
+      ["reportAccess", "We can quickly see what is working without assembling reports by hand."],
+      ["journey", "The experience feels connected from first click through conversion and onboarding."]
+    ];
+
+
+    const caseStudies = [
+      {
+        id: "athletes-chasing-greatness",
+        client: "Athletes Chasing Greatness",
+        tag: "Brand Infrastructure / Donor Trust",
+        title: "Christian College Sports Outreach Nonprofit.",
+        summary: "A recognizable brand, website, newsletter system, marketing collateral, and event signage established credibility across donor, college, and fundraising touchpoints.",
+        url: "/client-transformations/#athletes-chasing-greatness",
+        cta: "View the nonprofit brand transformation",
+        orgTypes: ["nonprofit"],
+        platforms: ["website", "email", "social", "content"],
+        frictions: ["experience", "scattered", "unclear"],
+        goals: ["prepare for growth", "organize content and assets"],
+        soloBoost: false
+      },
+      {
+        id: "lindsey-tyler-photography",
+        client: "Lindsey Tyler Photography",
+        tag: "Client Education / Booking Efficiency",
+        title: "Intimate Family Photography Practice.",
+        summary: "A visual preparation guide and example-driven shot-list system answered recurring questions before sessions, reduced preliminary meetings, and opened more booking capacity.",
+        url: "/client-transformations/#lindsey-tyler-photography",
+        cta: "View the client education system",
+        orgTypes: ["creative business", "service business"],
+        platforms: ["scheduling", "files", "content"],
+        frictions: ["manual", "experience", "duplicate"],
+        goals: ["reduce manual work", "improve the client journey"],
+        soloBoost: true
+      },
+      {
+        id: "beinspired-coaching",
+        client: "BeInspired Coaching",
+        tag: "Brand Footprint / Professionalization",
+        title: "DEI Coaching Practice.",
+        summary: "A scalable brand identity and professional website architecture aligned a rapidly expanding coaching team with the level of enterprise clients it was prepared to serve.",
+        url: "/client-transformations/#beinspired-coaching",
+        cta: "View the brand professionalization",
+        orgTypes: ["consulting practice", "service business"],
+        platforms: ["website", "social"],
+        frictions: ["experience", "unclear"],
+        goals: ["prepare for growth", "generate more qualified leads"],
+        soloBoost: false
+      },
+      {
+        id: "every-child-fed",
+        client: "Every Child Fed",
+        tag: "Donation Systems / CMS Management",
+        title: "Integrated Nonprofit Infrastructure.",
+        summary: "Donor-facing pathways, website management, and ongoing digital operations were organized into a more cohesive system for fundraising and communication.",
+        url: "/client-transformations/#every-child-fed",
+        cta: "View the donor infrastructure",
+        orgTypes: ["nonprofit"],
+        platforms: ["payments", "website", "email", "content"],
+        frictions: ["experience", "manual", "scattered"],
+        goals: ["improve the client journey", "prepare for growth"],
+        soloBoost: false
+      },
+      {
+        id: "catalyst-consulting",
+        client: "Catalyst Consulting",
+        tag: "Lead Capture / Automated Funnels",
+        title: "Consulting Lead Architecture.",
+        summary: "Connected funnels, lead capture, and follow-up pathways created a more reliable route from audience interest to qualified inquiry.",
+        url: "/client-transformations/#catalyst-consulting",
+        cta: "View the lead architecture",
+        orgTypes: ["consulting practice", "service business"],
+        platforms: ["forms", "crm", "email", "automation", "scheduling"],
+        frictions: ["lost", "followup", "manual"],
+        goals: ["generate more qualified leads", "improve the client journey"],
+        soloBoost: false
+      },
+      {
+        id: "toniic",
+        client: "Toniic",
+        tag: "Content Engineering / Knowledge Structure",
+        title: "High-Density Content Ecosystem.",
+        summary: "A complex body of information was structured into a more usable content architecture for management, discovery, and continued publishing.",
+        url: "/client-transformations/#toniic",
+        cta: "View the content system",
+        orgTypes: ["small team", "nonprofit"],
+        platforms: ["content", "files", "website"],
+        frictions: ["scattered", "duplicate", "unclear"],
+        goals: ["organize content and assets", "prepare for growth"],
+        soloBoost: false
+      },
+      {
+        id: "miss-patty-cake",
+        client: "Miss Patty Cake",
+        tag: "Multi-Platform / Brand Ecosystem",
+        title: "Multi-Platform Creative Brand.",
+        summary: "A wide digital footprint was organized into a more cohesive ecosystem across content, audience, product, and communication channels.",
+        url: "/client-transformations/#miss-patty-cake",
+        cta: "View the multi-platform ecosystem",
+        orgTypes: ["creative business", "small team"],
+        platforms: ["social", "content", "website", "email", "payments"],
+        frictions: ["unclear", "scattered", "experience"],
+        goals: ["organize content and assets", "prepare for growth"],
+        soloBoost: false
+      },
+      {
+        id: "one-week-missions",
+        client: "One Week Missions Experiences",
+        tag: "International Workflows / Operations",
+        title: "Mission Delivery Infrastructure.",
+        summary: "Complex international workflows were clarified and organized to support more consistent coordination, communication, and program delivery.",
+        url: "/client-transformations/#one-week-missions-experiences",
+        cta: "View the workflow redesign",
+        orgTypes: ["nonprofit", "small team"],
+        platforms: ["projects", "files", "email", "forms"],
+        frictions: ["manual", "unclear", "duplicate"],
+        goals: ["reduce manual work", "prepare for growth"],
+        soloBoost: false
+      },
+      {
+        id: "darrell-green",
+        client: "Darrell Green",
+        tag: "Enterprise Alignment / Unified Ecosystem",
+        title: "Commercial + Philanthropic Brand System.",
+        summary: "Multiple public-facing initiatives were unified within a clearer enterprise-grade system spanning commercial and philanthropic work.",
+        url: "/client-transformations/#darrell-green",
+        cta: "View the unified enterprise system",
+        orgTypes: ["service business", "nonprofit", "small team"],
+        platforms: ["website", "social", "content", "email"],
+        frictions: ["unclear", "experience", "scattered"],
+        goals: ["prepare for growth", "organize content and assets"],
+        soloBoost: false
+      }
+    ];
+
+    const scoreCaseStudy = (study, context) => {
+      let score = 0;
+
+      if (study.orgTypes.includes(context.orgType)) score += 8;
+      if (study.goals.includes(context.goal)) score += 5;
+      if (study.soloBoost && context.teamSize === "1") score += 6;
+
+      study.platforms.forEach(platform => {
+        if (context.platforms.includes(platform)) score += 2;
+      });
+
+      study.frictions.forEach(friction => {
+        if (context.frictions.includes(friction)) score += 4;
+      });
+
+      // Stronger, specific matching rules.
+      if (
+        study.id === "athletes-chasing-greatness" &&
+        context.orgType === "nonprofit" &&
+        (
+          !context.platforms.includes("website") ||
+          context.frictions.includes("experience") ||
+          context.goal === "prepare for growth"
+        )
+      ) score += 9;
+
+      if (
+        study.id === "lindsey-tyler-photography" &&
+        context.teamSize === "1" &&
+        (
+          context.frictions.includes("manual") ||
+          context.frictions.includes("experience") ||
+          context.goal === "reduce manual work"
+        )
+      ) score += 10;
+
+      if (
+        study.id === "every-child-fed" &&
+        context.orgType === "nonprofit" &&
+        context.platforms.includes("payments")
+      ) score += 8;
+
+      if (
+        study.id === "catalyst-consulting" &&
+        (
+          context.frictions.includes("lost") ||
+          context.frictions.includes("followup")
+        )
+      ) score += 8;
+
+      if (
+        study.id === "toniic" &&
+        (
+          context.frictions.includes("scattered") ||
+          context.goal === "organize content and assets"
+        )
+      ) score += 6;
+
+      if (
+        study.id === "miss-patty-cake" &&
+        context.platforms.length >= 8
+      ) score += 7;
+
+      return score;
+    };
+
+    const buildCaseStudies = (context) => {
+      const ranked = caseStudies
+        .map(study => ({ ...study, matchScore: scoreCaseStudy(study, context) }))
+        .sort((a, b) => b.matchScore - a.matchScore);
+
+      // Keep the two recommendations distinct when possible.
+      const selected = [];
+      for (const study of ranked) {
+        if (!selected.length) {
+          selected.push(study);
+          continue;
+        }
+
+        const first = selected[0];
+        const overlapsTooMuch =
+          first.orgTypes.some(type => study.orgTypes.includes(type)) &&
+          first.frictions.some(item => study.frictions.includes(item)) &&
+          first.id !== "athletes-chasing-greatness" &&
+          study.id !== "lindsey-tyler-photography";
+
+        if (!overlapsTooMuch || selected.length === 0) {
+          selected.push(study);
+        }
+
+        if (selected.length === 2) break;
+      }
+
+      if (selected.length < 2) selected.push(ranked.find(item => item.id !== selected[0].id));
+
+      document.getElementById("case-study-results").innerHTML = selected.map((study, index) => `
+        <a class="case-study-card ${index === 0 ? "primary" : "secondary"}" href="${study.url}">
+          <div>
+            <div class="case-study-number">0${index + 1}</div>
+            <div class="case-study-client">${study.client}</div>
+            <div class="case-study-tag">${study.tag}</div>
+            <h4 class="case-study-title">${study.title}</h4>
+            <p class="case-study-relevance">
+              <strong>Why it matches:</strong> ${study.summary}
+            </p>
+          </div>
+          <span class="case-study-link">${study.cta}</span>
+        </a>
+      `).join("");
+    };
+
+    const renderOptions = (targetId, items, namePrefix) => {
+      const target = document.getElementById(targetId);
+      target.innerHTML = items.map(([value, title, icon]) => `
+        <div class="option-card">
+          <input type="checkbox" id="${namePrefix}-${value}" value="${value}">
+          <label for="${namePrefix}-${value}">
+            <span class="option-icon">${icon}</span>
+            <span class="option-title">${title}</span>
+          </label>
+        </div>
+      `).join("");
+    };
+
+    const renderQuestions = () => {
+      const target = document.getElementById("connection-questions");
+      target.innerHTML = questions.map(([key, text]) => `
+        <div class="question">
+          <p>${text}</p>
+          <div class="segmented">
+            ${["No", "Sometimes", "Yes"].map((label, index) => {
+              const val = index;
+              return `
+                <input type="radio" name="${key}" id="${key}-${val}" value="${val}" ${index === 1 ? "checked" : ""}>
+                <label for="${key}-${val}">${label}</label>
+              `;
+            }).join("")}
+          </div>
+        </div>
+      `).join("");
+    };
+
+    renderOptions("platform-options", platforms, "platform");
+    renderOptions("friction-options", frictions, "friction");
+    renderQuestions();
+
+    let step = 1;
+    const totalSteps = 5;
+
+    const updateStep = () => {
+      document.querySelectorAll(".step").forEach(el => el.classList.remove("active"));
+      document.getElementById(`step-${step}`).classList.add("active");
+      document.getElementById("current-step").textContent = step;
+      const percent = Math.round((step / totalSteps) * 100);
+      document.getElementById("progress-bar").style.width = `${percent}%`;
+      document.getElementById("progress-percent").textContent = `${percent}%`;
+
+      const names = ["Your organization", "Your platforms", "System connections", "Friction points", "Your results"];
+      document.getElementById("progress-name").textContent = names[step - 1];
+      document.getElementById("ecosystem-app").scrollIntoView({behavior: "smooth", block: "start"});
+    };
+
+    document.querySelectorAll("[data-next]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        step = Math.min(step + 1, totalSteps);
+        updateStep();
+      });
+    });
+
+    document.querySelectorAll("[data-back]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        step = Math.max(step - 1, 1);
+        updateStep();
+      });
+    });
+
+    const checkedValues = (prefix) =>
+      [...document.querySelectorAll(`input[id^="${prefix}-"]:checked`)].map(el => el.value);
+
+    const answerTotal = () =>
+      questions.reduce((sum, [key]) => {
+        const chosen = document.querySelector(`input[name="${key}"]:checked`);
+        return sum + (chosen ? Number(chosen.value) : 1);
+      }, 0);
+
+    const buildMap = (selectedPlatforms) => {
+      const order = [
+        ["social", "Discovery"],
+        ["website", "Website"],
+        ["forms", "Lead capture"],
+        ["crm", "Relationship data"],
+        ["email", "Follow-up"],
+        ["scheduling", "Booking"],
+        ["payments", "Conversion"],
+        ["projects", "Delivery"],
+        ["files", "Assets"],
+        ["content", "Content"],
+        ["automation", "Automation"],
+        ["analytics", "Reporting"]
+      ];
+
+      const active = order.filter(([key]) => selectedPlatforms.includes(key));
+      const display = active.length ? active : order.slice(0,5);
+
+      document.getElementById("ecosystem-map").innerHTML = display.map(([key, label], index) => {
+        const platformName = platforms.find(p => p[0] === key)?.[1] || label;
+        return `
+          <div class="node ${index < display.length - 1 ? "connected" : ""}">
+            <span class="node-type">${label}</span>
+            <span class="node-name">${platformName}</span>
+          </div>
+        `;
+      }).join("");
+    };
+
+    const buildRecommendations = (friction, score) => {
+      const library = {
+        duplicate: ["Create one source of truth", "Decide where core contact, project, and asset information should live, then eliminate duplicate entry wherever possible."],
+        manual: ["Automate the fragile handoffs", "Start with the moments that currently depend on memory: form routing, follow-up, reminders, and status updates."],
+        lost: ["Repair the lead pathway", "Connect inquiry forms, notifications, CRM records, and follow-up so every qualified opportunity has a visible next step."],
+        scattered: ["Build a central asset library", "Organize approved copy, photography, templates, and campaign materials so the team can find the right version quickly."],
+        unclear: ["Assign each platform a job", "Clarify the purpose, owner, and required data for every tool. Remove platforms that do not have a distinct role."],
+        followup: ["Standardize follow-up", "Create a reliable sequence for new leads, clients, donors, or members so the experience is consistent regardless of who responds."],
+        reporting: ["Simplify reporting", "Choose a small set of decisions your reports need to support, then automate collection around those decisions."],
+        experience: ["Connect the client journey", "Review the full experience from discovery to onboarding and remove abrupt handoffs, repeated questions, and unclear next steps."]
+      };
+
+      const defaults = [
+        ["Clarify the ecosystem architecture", "Document what each platform owns, how information moves, and where handoffs should happen."],
+        ["Prioritize the highest-friction pathway", "Do not rebuild everything at once. Start with the journey most directly tied to revenue, participation, or capacity."],
+        ["Create a 90-day systems roadmap", "Sequence the repairs so each improvement supports the next instead of creating another disconnected tool."]
+      ];
+
+      let picks = friction.slice(0,3).map(key => library[key]).filter(Boolean);
+      while (picks.length < 3) picks.push(defaults[picks.length]);
+
+      document.getElementById("recommendations").innerHTML = picks.map((item, i) => `
+        <article class="rec">
+          <span>Priority ${i + 1}</span>
+          <h4>${item[0]}</h4>
+          <p>${item[1]}</p>
+        </article>
+      `).join("");
+    };
+
+    document.getElementById("generate-results").addEventListener("click", () => {
+      const selectedPlatforms = checkedValues("platform");
+      const selectedFriction = checkedValues("friction");
+      const connectionScore = answerTotal(); // max 12
+      const platformBreadth = Math.min(selectedPlatforms.length, 8);
+      const frictionPenalty = Math.min(selectedFriction.length * 4, 28);
+
+      let score = Math.round(42 + (connectionScore / 12) * 46 + platformBreadth - frictionPenalty);
+      score = Math.max(28, Math.min(94, score));
+
+      const orgName = document.getElementById("orgName").value.trim() || "Your organization";
+      const orgType = document.getElementById("orgType").value;
+      const goal = document.getElementById("primaryGoal").value;
+
+      let title, copy, caption;
+      if (score >= 80) {
+        title = "Your ecosystem is connected, but optimization will unlock the next level.";
+        caption = "Strong foundation. Focus on refinement.";
+        copy = `${orgName} has many of the right components in place. The biggest opportunity is to simplify the system, reduce friction between platforms, and make sure your infrastructure can support your goal to ${goal}.`;
+      } else if (score >= 62) {
+        title = "Your ecosystem is growing faster than its infrastructure.";
+        caption = "Connected, with room to streamline.";
+        copy = `${orgName} has a functional digital foundation, but several handoffs still rely on people, workarounds, or disconnected tools. For a ${orgType}, this often creates hidden drag in lead follow-up, content management, and delivery.`;
+      } else if (score >= 45) {
+        title = "Your digital ecosystem is functional, but fragmented.";
+        caption = "Key systems need stronger connections.";
+        copy = `${orgName} is likely getting the work done, but the process requires more manual coordination than it should. The fastest path forward is to repair the highest-friction journey first, then create clearer ownership across the rest of the ecosystem.`;
+      } else {
+        title = "Your tools are operating as separate islands.";
+        caption = "High friction. Start with the core journey.";
+        copy = `${orgName} has important digital pieces in place, but they are not yet working as one system. This can cause missed follow-up, duplicated work, inconsistent experiences, and limited visibility into what is actually working.`;
+      }
+
+      document.getElementById("score").textContent = score;
+      document.getElementById("score-caption").textContent = caption;
+      document.getElementById("diagnosis-title").textContent = title;
+      document.getElementById("diagnosis-copy").textContent = copy;
+
+      buildMap(selectedPlatforms);
+      buildCaseStudies({
+        orgType,
+        teamSize: document.getElementById("teamSize").value,
+        goal,
+        platforms: selectedPlatforms,
+        frictions: selectedFriction,
+        score
+      });
+      buildRecommendations(selectedFriction, score);
+
+      step = 5;
+      updateStep();
+    });
+
+    document.getElementById("restart").addEventListener("click", () => {
+      document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
+      document.querySelectorAll('input[type="radio"][value="1"]').forEach(el => el.checked = true);
+      document.getElementById("orgName").value = "";
+      step = 1;
+      updateStep();
+    });
+  </script>
+</body>
+</html>
