@@ -108,7 +108,7 @@
       text-transform: uppercase;
     }
     .eyebrow::before { content: ""; width: 38px; height: 2px; border-radius: 999px; background: var(--accent-lime); }
-    h1 { max-width: 920px; font-size: clamp(4rem, 8vw, 8.1rem); margin-bottom: 28px; }
+    h1 { max-width: 780px; font-size: clamp(2.85rem, 5.4vw, 5.6rem); margin-bottom: 28px; }
     .hero-copy { max-width: 760px; font-size: clamp(1rem, 1.45vw, 1.18rem); margin-bottom: 34px; }
     .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
     .hero-card {
@@ -142,7 +142,7 @@
     .system-node:nth-child(3) { background: rgba(181, 255, 58, 0.66); margin-left: 84px; }
     .section { padding: clamp(60px, 8vw, 104px) 0; border-top: 1px solid var(--line-soft); }
     .section-heading { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 44px; align-items: end; margin-bottom: 42px; }
-    .section-heading h2 { font-size: clamp(2.8rem, 5.4vw, 5.4rem); }
+    .section-heading h2 { font-size: clamp(2.2rem, 4vw, 4rem); }
     .section-heading p { max-width: 700px; justify-self: end; font-size: 1rem; }
     .tool-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
     .tool-card {
@@ -160,15 +160,20 @@
       transition: transform 0.24s ease, background 0.24s ease, box-shadow 0.24s ease;
     }
     .tool-card:hover { transform: translateY(-5px); background: rgba(240, 245, 230, 0.86); box-shadow: 0 24px 58px rgba(15, 17, 21, 0.08); }
+    .tool-card.is-disabled { cursor: default; opacity: 0.78; }
+    .tool-card.is-disabled:hover { transform: none; box-shadow: none; background: rgba(253, 251, 247, 0.74); }
+    .tool-card.is-disabled .tool-link { opacity: 0.7; }
+    .tool-status { position: relative; z-index: 1; display: inline-flex; width: fit-content; margin-bottom: 14px; padding: 8px 12px; border-radius: 999px; background: rgba(15, 17, 21, 0.08); color: var(--text-charcoal); font-size: 0.66rem; font-weight: 900; letter-spacing: 0.14em; text-transform: uppercase; }
+    .tool-card.dark .tool-status { background: rgba(181, 255, 58, 0.22); color: var(--bg-cream); }
     .tool-card::before { content: ""; position: absolute; width: 220px; height: 220px; right: -88px; top: -88px; border-radius: 999px; background: rgba(181, 255, 58, 0.28); }
     .tool-card.dark { background: var(--text-charcoal); color: var(--bg-cream); }
     .tool-card.dark h3 { color: var(--bg-cream); }
     .tool-card.dark p, .tool-card.dark .tool-meta, .tool-card.dark .tool-list li { color: rgba(253, 251, 247, 0.76); }
     .tool-card.dark .tool-list li { border-top-color: rgba(253, 251, 247, 0.16); }
     .tool-meta { position: relative; z-index: 1; color: var(--text-slate); font-size: 0.68rem; font-weight: 900; letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 18px; }
-    .tool-card h3 { position: relative; z-index: 1; font-size: clamp(2.35rem, 4vw, 4rem); margin-bottom: 18px; }
-    .tool-card p { position: relative; z-index: 1; font-size: 0.96rem; margin-bottom: 26px; }
-    .tool-list { position: relative; z-index: 1; list-style: none; display: grid; gap: 12px; margin: 26px 0 32px; }
+    .tool-card h3 { position: relative; z-index: 1; font-size: clamp(1.72rem, 2.45vw, 2.65rem); line-height: 1.02; margin-bottom: 18px; overflow-wrap: break-word; }
+    .tool-card p { position: relative; z-index: 1; font-size: 0.94rem; margin-bottom: 22px; }
+    .tool-list { position: relative; z-index: 1; list-style: none; display: grid; gap: 10px; margin: 20px 0 28px; }
     .tool-list li { padding-top: 12px; border-top: 1px solid rgba(15, 17, 21, 0.10); color: var(--text-slate); font-size: 0.84rem; }
     .tool-link { position: relative; z-index: 1; display: inline-flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 900; letter-spacing: 0.12em; text-transform: uppercase; }
     .cta-panel {
@@ -178,7 +183,7 @@
       padding: clamp(34px, 5vw, 58px);
       margin: clamp(56px, 7vw, 92px) 0;
     }
-    .cta-panel h2 { color: var(--bg-cream); font-size: clamp(2.7rem, 5.2vw, 5.1rem); margin-bottom: 18px; }
+    .cta-panel h2 { color: var(--bg-cream); font-size: clamp(2.1rem, 3.8vw, 3.8rem); margin-bottom: 18px; }
     .cta-panel p { color: rgba(253, 251, 247, 0.82); max-width: 740px; margin-bottom: 28px; }
     footer { padding: 34px 0 38px; border-top: 1px solid var(--line-soft); display: grid; grid-template-columns: 1fr 1fr; gap: 30px; color: var(--text-slate); font-size: 0.86rem; }
     footer div:last-child { text-align: right; }
@@ -201,6 +206,7 @@
       footer div:last-child { text-align: left; }
     }
     @media (max-width: 620px) {
+      h1 { font-size: clamp(2.45rem, 11vw, 3.6rem); }
       .hero-actions, .btn { width: 100%; }
       .system-node:nth-child(2), .system-node:nth-child(3) { margin-left: 0; }
       .tool-card, .cta-panel { border-radius: 40px; }
@@ -253,9 +259,10 @@
           <p>Each toolkit resource is designed to help you diagnose the invisible friction behind your brand before investing in more content, more platforms, or another redesign.</p>
         </div>
         <div class="tool-grid">
-          <a href="/toolkit/brand-infrastructure-scorecard/" class="tool-card">
+          <article class="tool-card is-disabled" aria-disabled="true">
             <div>
               <p class="tool-meta">Diagnostic Scorecard</p>
+              <span class="tool-status">Coming Soon</span>
               <h3>Brand Infrastructure Scorecard</h3>
               <p>A guided scorecard for evaluating whether your brand has the structure, messaging, digital home, content workflow, and launch systems needed to scale.</p>
               <ul class="tool-list">
@@ -264,8 +271,8 @@
                 <li>Clarify what needs to be fixed before your next major push.</li>
               </ul>
             </div>
-            <span class="tool-link">Open Tool →</span>
-          </a>
+            <span class="tool-link">Coming Soon</span>
+          </article>
 
           <a href="/toolkit/digital-ecosystem-map/" class="tool-card dark">
             <div>
@@ -281,9 +288,10 @@
             <span class="tool-link">Open Tool →</span>
           </a>
 
-          <a href="/toolkit/content-supply-chain-mapper/" class="tool-card">
+          <article class="tool-card is-disabled" aria-disabled="true">
             <div>
               <p class="tool-meta">Content Operations</p>
+              <span class="tool-status">Coming Soon</span>
               <h3>Content Supply Chain Mapper</h3>
               <p>A planning tool for turning ideas, proof, founder expertise, campaign moments, and source assets into repeatable content across channels.</p>
               <ul class="tool-list">
@@ -292,15 +300,15 @@
                 <li>Reduce the weekly blank-page problem with a clearer production flow.</li>
               </ul>
             </div>
-            <span class="tool-link">Open Tool →</span>
-          </a>
+            <span class="tool-link">Coming Soon</span>
+          </article>
         </div>
       </section>
 
       <section class="cta-panel">
-        <h2>Not sure where to start?</h2>
-        <p>Start with the Brand Infrastructure Scorecard. It will help you identify whether your biggest issue is positioning, platform structure, content operations, or conversion flow.</p>
-        <a href="/toolkit/brand-infrastructure-scorecard/" class="btn btn-lime">Start with the Scorecard</a>
+        <h2>Start with the map.</h2>
+        <p>The Brand Infrastructure Scorecard and Content Supply Chain Mapper are still being built. For now, use the Digital Ecosystem Map to see how your website, platforms, offers, and audience touchpoints connect, then use your results to identify the system gaps worth fixing first.</p>
+        <a href="/toolkit/digital-ecosystem-map/" class="btn btn-lime">Open the Digital Ecosystem Map</a>
       </section>
     </main>
 
