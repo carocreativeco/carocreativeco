@@ -198,24 +198,192 @@
             gap: 40px;
         }
 
+
         .service-card {
-            border-top: 3px solid var(--accent-lime);
-            padding-top: 30px;
+            position: relative;
+            min-height: 320px;
+            border-top: 0;
+            border-radius: 42px;
+            padding: 34px;
+            background: rgba(253, 251, 247, 0.70);
+            border: 1px solid rgba(15, 17, 21, 0.08);
+            box-shadow: 0 20px 46px rgba(15, 17, 21, 0.04);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            width: 190px;
+            height: 190px;
+            right: -76px;
+            top: -78px;
+            border-radius: 999px;
+            background: rgba(181, 255, 58, 0.26);
+            pointer-events: none;
+        }
+
+        .service-card:nth-child(2) {
+            background: var(--text-charcoal);
+            color: var(--bg-cream);
+            transform: translateY(38px);
+        }
+
+        .service-card:nth-child(2) h3,
+        .service-card:nth-child(2) p,
+        .service-card:nth-child(2) .service-label {
+            color: var(--bg-cream);
+        }
+
+        .service-card:nth-child(3) {
+            transform: translateY(76px);
+        }
+
+
+        .service-card h3,
+        .service-card p {
+            position: relative;
+            z-index: 1;
         }
 
         .service-card h3 {
-            font-size: 1.4rem;
-            font-family: var(--font-sans);
-            font-weight: 600;
-            margin-bottom: 20px;
+            font-size: clamp(1.75rem, 2.8vw, 2.7rem);
+            line-height: 1.02;
+            font-family: var(--font-serif);
+            font-weight: 400;
+            letter-spacing: -0.035em;
         }
 
         .service-card p {
-            font-size: 0.95rem;
-            color: var(--text-slate);
+            font-size: 0.98rem;
         }
 
 
+
+
+        .systems-visual {
+            margin-top: 0;
+            grid-column: 1 / -1;
+            border-radius: 48px;
+            padding: clamp(30px, 5vw, 54px);
+            background:
+                radial-gradient(circle at 92% 10%, rgba(181, 255, 58, 0.26), transparent 18rem),
+                linear-gradient(145deg, rgba(240, 245, 230, 0.94), rgba(253, 251, 247, 0.96));
+            border: 1px solid rgba(15, 17, 21, 0.08);
+            box-shadow: 0 24px 54px rgba(15, 17, 21, 0.06);
+        }
+
+        .systems-visual-top {
+            display: grid;
+            grid-template-columns: 0.78fr 1.22fr;
+            gap: 40px;
+            align-items: end;
+            margin-bottom: 34px;
+        }
+
+        .systems-visual-top h3 {
+            font-family: var(--font-serif);
+            font-size: clamp(2.15rem, 4.2vw, 4rem);
+            line-height: 1.02;
+            letter-spacing: -0.04em;
+            color: var(--text-charcoal);
+            margin: 0;
+        }
+
+        .systems-visual-top p {
+            margin: 0;
+            color: var(--text-slate);
+            font-size: 1rem;
+            max-width: 660px;
+        }
+
+        .systems-diagnostic {
+            display: grid;
+            grid-template-columns: 1fr 1.15fr;
+            gap: 22px;
+            align-items: stretch;
+        }
+
+        .systems-main-card {
+            border-radius: 38px;
+            background: var(--text-charcoal);
+            color: var(--bg-cream);
+            padding: 32px;
+            min-height: 340px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .systems-main-card span {
+            display: inline-flex;
+            width: fit-content;
+            border-radius: 999px;
+            padding: 9px 14px;
+            background: var(--accent-lime);
+            color: var(--text-charcoal);
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .systems-main-card p {
+            color: rgba(253, 251, 247, 0.78);
+            font-size: 1.05rem;
+            margin: 0;
+        }
+
+        .systems-signs-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .systems-sign {
+            border-radius: 30px;
+            padding: 22px;
+            background: rgba(253, 251, 247, 0.78);
+            border: 1px solid rgba(15, 17, 21, 0.08);
+            display: grid;
+            gap: 12px;
+        }
+
+        .systems-sign-number {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            background: var(--accent-lime);
+            color: var(--text-charcoal);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+        }
+
+        .systems-sign h4 {
+            font-size: 1.04rem;
+            line-height: 1.16;
+            color: var(--text-charcoal);
+            margin: 0;
+        }
+
+        .systems-sign p {
+            font-size: 0.86rem;
+            line-height: 1.5;
+            color: var(--text-slate);
+            margin: 0;
+        }
+
+        .systems-more {
+            margin-top: 18px;
+            color: var(--text-slate);
+            font-size: 0.92rem;
+        }
 
         .logo-marquee-section {
             padding: 24px 0 64px;
@@ -398,6 +566,119 @@
             font-size: 1rem;
         }
 
+
+        .home-reviews {
+            padding: 84px 0 70px;
+        }
+
+        .home-reviews-card {
+            border-radius: 52px;
+            background:
+                radial-gradient(circle at 90% 8%, rgba(181, 255, 58, 0.24), transparent 16rem),
+                rgba(240, 245, 230, 0.74);
+            border: 1px solid rgba(15, 17, 21, 0.08);
+            padding: clamp(30px, 5vw, 54px);
+        }
+
+        .home-reviews-heading {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 36px;
+            align-items: end;
+            margin-bottom: 34px;
+        }
+
+        .home-reviews-heading h2 {
+            font-size: clamp(2.3rem, 4.6vw, 4.4rem);
+            line-height: 1;
+            letter-spacing: -0.04em;
+        }
+
+        .home-reviews-heading p {
+            color: var(--text-slate);
+            max-width: 650px;
+        }
+
+        .home-review-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .home-review {
+            min-height: 330px;
+            border-radius: 36px;
+            padding: 28px;
+            background: rgba(253, 251, 247, 0.76);
+            border: 1px solid rgba(15, 17, 21, 0.08);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .home-review:nth-child(2) {
+            background: var(--text-charcoal);
+            color: var(--bg-cream);
+        }
+
+        .home-review:nth-child(2) p,
+        .home-review:nth-child(2) .home-review-role {
+            color: rgba(253, 251, 247, 0.76);
+        }
+
+        .home-review-tag {
+            display: inline-flex;
+            width: fit-content;
+            border-radius: 999px;
+            padding: 8px 12px;
+            background: rgba(181, 255, 58, 0.42);
+            color: var(--text-charcoal);
+            font-size: 0.68rem;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+        }
+
+        .home-review:nth-child(2) .home-review-tag {
+            background: var(--accent-lime);
+        }
+
+        .home-review-quote {
+            font-family: var(--font-serif);
+            font-size: clamp(1.42rem, 2.2vw, 2rem);
+            line-height: 1.12;
+            letter-spacing: -0.035em;
+            color: var(--text-charcoal);
+            margin-bottom: 26px;
+        }
+
+        .home-review:nth-child(2) .home-review-quote {
+            color: var(--bg-cream);
+        }
+
+        .home-review-name {
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: var(--text-charcoal);
+            margin-bottom: 6px;
+        }
+
+        .home-review:nth-child(2) .home-review-name {
+            color: var(--bg-cream);
+        }
+
+        .home-review-role {
+            color: var(--text-slate);
+            font-size: 0.88rem;
+        }
+
+        .home-reviews-actions {
+            margin-top: 30px;
+        }
+
         footer {
             padding: 32px 0;
             border-top: 1px solid rgba(15, 17, 21, 0.1);
@@ -498,7 +779,6 @@
 
             <nav class="site-nav" aria-label="Primary navigation">
   <ul>
-    <li><a href="/#services">System Architecture</a></li>
     <li><a href="/client-transformations/">Client Transformations</a></li>
     <li><a href="/insights/">Insights</a></li>
     <li><a href="/dossier/">Dossier</a></li>
@@ -525,15 +805,62 @@
         </section>
 
         <section class="services" id="services">
+            <div class="systems-visual">
+                <div class="systems-visual-top">
+                    <h3>When the brand starts feeling harder to run, the system is usually the issue.</h3>
+                    <p>You do not need to diagnose every problem at once. These are the clearest signals that your infrastructure is creating friction behind the scenes.</p>
+                </div>
+
+                <div class="systems-diagnostic">
+                    <article class="systems-main-card">
+                        <span>System Diagnostic</span>
+                        <p>The pattern is simple: when people cannot find, trust, hand off, or reuse what already exists, the brand starts depending on memory instead of infrastructure.</p>
+                    </article>
+
+                    <div class="systems-signs-grid">
+                        <article class="systems-sign">
+                            <span class="systems-sign-number">1</span>
+                            <h4>People create their own side systems</h4>
+                            <p>Assets, notes, or project details end up in private folders because the official setup is not easy enough to use.</p>
+                        </article>
+
+                        <article class="systems-sign">
+                            <span class="systems-sign-number">2</span>
+                            <h4>Finding the right file takes too long</h4>
+                            <p>Searches require multiple tries, which usually means naming, structure, or metadata needs a reset.</p>
+                        </article>
+
+                        <article class="systems-sign">
+                            <span class="systems-sign-number">3</span>
+                            <h4>Old versions keep resurfacing</h4>
+                            <p>Outdated copy, graphics, or files make it into live materials when ownership and approvals are unclear.</p>
+                        </article>
+
+                        <article class="systems-sign">
+                            <span class="systems-sign-number">4</span>
+                            <h4>Work gets rebuilt instead of reused</h4>
+                            <p>If your team recreates what already exists, the system is costing time twice.</p>
+                        </article>
+                    </div>
+                </div>
+
+                <p class="systems-more">Other common signs include manual platform handoffs, slow approvals, and onboarding that takes too much explaining.</p>
+            </div>
+
             <div class="service-card">
+                <span class="service-icon" aria-hidden="true">↗</span>
                 <h3>01 / Launch Operations</h3>
                 <p>Turning chaotic product calendars into predictable, automated conversion pathways. We design digital course portals, webinar structures, and timelines to deliver intellectual property to market flawlessly.</p>
             </div>
+
             <div class="service-card" style="margin-top: 40px;">
+                <span class="service-icon" aria-hidden="true">▦</span>
                 <h3>02 / Brand Infrastructure</h3>
                 <p>Eliminating delivery bottlenecks. We standardize turn-key media assets, premium presentation files, and system templates so your internal team can deploy communication materials without creative friction.</p>
             </div>
+
             <div class="service-card" style="margin-top: 80px;">
+                <span class="service-icon" aria-hidden="true">⟳</span>
                 <h3>03 / Content Supply Chains</h3>
                 <p>Structuring raw media ingestion into automated publishing workflows. We eliminate tracking disorganization by engineering reach-optimized social architecture, designing scroll-stopping carousel templates, and standardizing engagement tactics to ensure your visual assets drive measurable growth.</p>
             </div>
@@ -596,6 +923,54 @@
                     <h3>Fractional CMO & Communication</h3>
                     <span class="focus">Focus: Non-Profit & Enterprise Strategy</span>
                     <p>Showcases how audited communication bottlenecks evolved into smooth content supply chains and highly engaged digital presences for global organizations like Her Future Coalition and Every Child Fed.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="home-reviews" id="reviews">
+            <div class="home-reviews-card">
+                <div class="home-reviews-heading">
+                    <h2>What clients notice after the system is built.</h2>
+                    <p>Selected notes from clients across websites, brand infrastructure, content strategy, client education, and creative operations.</p>
+                </div>
+
+                <div class="home-review-grid">
+                    <article class="home-review">
+                        <div>
+                            <span class="home-review-tag">Website + Copywriting</span>
+                            <p class="home-review-quote">“Caroline brought my vision to life with a beautiful website and complete copywriting.”</p>
+                        </div>
+                        <div>
+                            <p class="home-review-name">Cynthia Ohene</p>
+                            <p class="home-review-role">Royalty Mindset Coaching</p>
+                        </div>
+                    </article>
+
+                    <article class="home-review">
+                        <div>
+                            <span class="home-review-tag">Mission-Led Content</span>
+                            <p class="home-review-quote">“Her contribution has been transformational for our organization.”</p>
+                        </div>
+                        <div>
+                            <p class="home-review-name">Sarah Symons</p>
+                            <p class="home-review-role">Founder & Executive Director, Her Future Coalition</p>
+                        </div>
+                    </article>
+
+                    <article class="home-review">
+                        <div>
+                            <span class="home-review-tag">Website Transformation</span>
+                            <p class="home-review-quote">“She completely transformed our website. The final product exceeded our expectations.”</p>
+                        </div>
+                        <div>
+                            <p class="home-review-name">Joanna Green</p>
+                            <p class="home-review-role">Darrell Green Enterprises</p>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="home-reviews-actions">
+                    <a href="/client-transformations/#reviews" class="btn btn-dark">Read More Client Notes →</a>
                 </div>
             </div>
         </section>
