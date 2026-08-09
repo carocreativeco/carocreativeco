@@ -108,28 +108,6 @@
       box-shadow: 0 0 0 6px rgba(181, 255, 58, 0.18);
     }
 
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin-bottom: 20px;
-      color: var(--text-slate);
-      font-size: 0.74rem;
-      font-weight: 900;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-    }
-
-    .eyebrow::before,
-    .eyebrow::after {
-      content: "";
-      width: 34px;
-      height: 2px;
-      border-radius: 999px;
-      background: var(--accent-lime);
-    }
-
     h1 {
       max-width: 740px;
       margin: 0 auto 26px;
@@ -212,13 +190,6 @@
       color: var(--bg-cream);
     }
 
-    .btn-ghost {
-      background: rgba(253, 251, 247, 0.62);
-      border-color: var(--line-soft);
-      color: var(--text-charcoal);
-      backdrop-filter: blur(14px);
-    }
-
     footer {
       padding: 26px 0 32px;
       border-top: 1px solid var(--line-soft);
@@ -251,11 +222,6 @@
       h1 {
         font-size: clamp(2.55rem, 13vw, 4.2rem);
       }
-
-      .eyebrow::before,
-      .eyebrow::after {
-        width: 24px;
-      }
     }
   </style>
 </head>
@@ -275,9 +241,7 @@
           Coming Soon
         </div>
 
-        <span class="eyebrow">Caro Creative</span>
-
-        <h1>The system behind the brand is coming soon.</h1>
+        <h1>Coming Soon</h1>
 
         <p class="hero-copy">
           Caro Creative builds brand infrastructure, digital ecosystems, and creative operations for founders, nonprofits, coaches, consultants, and creative teams ready for a more organized way to show up and scale.
@@ -291,7 +255,6 @@
 
         <div class="actions">
           <a href="mailto:chughes.social@gmail.com" class="btn btn-lime">Inquire Before Launch</a>
-          <a href="/" class="btn btn-ghost">Return Home</a>
         </div>
       </section>
     </main>
