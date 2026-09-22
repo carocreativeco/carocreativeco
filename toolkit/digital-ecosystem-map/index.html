@@ -1204,6 +1204,14 @@
               <input id="orgName" type="text" placeholder="Your business or organization" />
             </div>
             <div class="field">
+              <label for="leadEmail">Email address</label>
+              <input id="leadEmail" type="email" placeholder="you@example.com" required />
+            </div>
+            <div class="field">
+              <label for="leadWebsite">Website URL <span style="font-weight:500;color:#667062;">(optional)</span></label>
+              <input id="leadWebsite" type="url" placeholder="https://yourwebsite.com" />
+            </div>
+            <div class="field">
               <label for="orgType">Organization type</label>
               <select id="orgType">
                 <option value="service business">Service business</option>
@@ -1328,6 +1336,8 @@
               </div>
               <a class="button" id="audit-link" href="/#audit">Request System Audit</a>
             </div>
+
+            <p id="submission-status" class="small-note" aria-live="polite"></p>
 
             <div class="nav">
               <button class="button button-secondary" id="restart">Start over</button>
@@ -1628,6 +1638,8 @@
 
       if (selected.length < 2) selected.push(ranked.find(item => item.id !== selected[0].id));
 
+      window.latestCaseStudyMatches = selected.map(study => study.client);
+
       document.getElementById("case-study-results").innerHTML = selected.map((study, index) => `
         <a class="case-study-card ${index === 0 ? "primary" : "secondary"}" href="${study.url}">
           <div>
@@ -1778,7 +1790,48 @@
       `).join("");
     };
 
-    document.getElementById("generate-results").addEventListener("click", () => {
+    const submitEcosystemMap = async (payload) => {
+      const status = document.getElementById("submission-status");
+
+      try {
+        const response = await fetch("/api/submit-ecosystem-map.php", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json().catch(() => ({}));
+
+        if (!response.ok || !result.ok) {
+          throw new Error(result.message || `Submission failed with HTTP ${response.status}`);
+        }
+
+        if (status) {
+          status.textContent = "Your map has been generated and your results were submitted successfully.";
+        }
+
+        return result;
+      } catch (error) {
+        console.error("Digital Ecosystem Map submission error:", error);
+
+        if (status) {
+          status.textContent = "Your map was generated, but the submission could not be sent. Your downloadable results are still available below.";
+        }
+
+        return null;
+      }
+    };
+
+    document.getElementById("generate-results").addEventListener("click", async () => {
+      const emailField = document.getElementById("leadEmail");
+
+      if (!emailField.checkValidity()) {
+        emailField.reportValidity();
+        return;
+      }
+
       const selectedPlatforms = checkedValues("platform");
       const selectedFriction = checkedValues("friction");
       const connectionScore = answerTotal(); // max 12
@@ -1829,12 +1882,33 @@
 
       step = 5;
       updateStep();
+
+      submitEcosystemMap({
+        organizationName: orgName,
+        email: document.getElementById("leadEmail").value.trim(),
+        website: document.getElementById("leadWebsite").value.trim(),
+        organizationType: orgType,
+        teamSize: document.getElementById("teamSize").value,
+        primaryGoal: goal,
+        selectedPlatforms,
+        frictionPoints: selectedFriction,
+        ecosystemScore: score,
+        scoreCaption: caption,
+        diagnosisTitle: title,
+        diagnosisCopy: copy,
+        recommendedCaseStudies: window.latestCaseStudyMatches || [],
+        submittedAt: new Date().toISOString()
+      });
     });
 
     document.getElementById("restart").addEventListener("click", () => {
       document.querySelectorAll('input[type="checkbox"]').forEach(el => el.checked = false);
       document.querySelectorAll('input[type="radio"][value="1"]').forEach(el => el.checked = true);
       document.getElementById("orgName").value = "";
+      document.getElementById("leadEmail").value = "";
+      document.getElementById("leadWebsite").value = "";
+      const submissionStatus = document.getElementById("submission-status");
+      if (submissionStatus) submissionStatus.textContent = "";
       step = 1;
       updateStep();
     });
